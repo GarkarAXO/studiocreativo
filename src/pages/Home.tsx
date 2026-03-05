@@ -17,7 +17,7 @@ const Home: React.FC = () => {
       y: 0,
       transition: { 
         duration: 0.8, 
-        ease: [0.16, 1, 0.3, 1] 
+        ease: [0.16, 1, 0.3, 1] as any // Casting para evitar error de tipos en Framer Motion
       }
     }
   };
@@ -41,8 +41,6 @@ const Home: React.FC = () => {
           <BackgroundEffect />
           <FloatingElements />
 
-          {/* Content: Z-index mayor que el fondo pero menor que los elementos flotantes si se desea, 
-              aunque el usuario pidió que los elementos pasen por delante del texto */}
           <div className="relative z-20 max-w-4xl mx-auto px-6 text-center">
             <motion.div
               variants={containerVariants}
@@ -50,7 +48,6 @@ const Home: React.FC = () => {
               animate="visible"
               className="flex flex-col items-center gap-10"
             >
-              {/* Título con Animación de Revelación */}
               <div className="space-y-2">
                 {[t('hero.title_1'), t('hero.title_2'), t('hero.title_3')].map((line, index) => (
                   <div key={index} className="overflow-hidden">
@@ -64,7 +61,6 @@ const Home: React.FC = () => {
                 ))}
               </div>
 
-              {/* Subtítulo con entrada suave */}
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -76,14 +72,13 @@ const Home: React.FC = () => {
                 </p>
               </motion.div>
 
-              {/* CTAs con entrada escalonada */}
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.7, duration: 0.8 }}
                 className="flex flex-col sm:flex-row gap-6 mt-4"
               >
-                <Link to="/configurator" className="flex min-w-[200px] items-center justify-center rounded-full h-16 px-10 bg-slate-900 text-white text-xs font-black uppercase tracking-widest transition-all hover:bg-primary active:scale-95 shadow-xl relative z-40">
+                <Link to="/configurator" className="flex min-w-[200px] items-center justify-center rounded-full h-16 px-10 bg-slate-900 text-white text-xs font-black uppercase tracking-widest transition-all hover:bg-primary active:scale-95 shadow-xl relative z-40 text-center">
                   {t('hero.cta')}
                 </Link>
                 <button className="flex min-w-[200px] items-center justify-center rounded-full h-16 px-10 border border-slate-200 bg-slate-900/5 text-slate-900 text-xs font-black uppercase tracking-widest transition-all hover:bg-slate-900/10 active:scale-95 gap-3 relative z-40">
@@ -94,7 +89,6 @@ const Home: React.FC = () => {
             </motion.div>
           </div>
 
-          {/* Scroll Indicator */}
           <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 opacity-10">
              <div className="w-[1px] h-16 bg-gradient-to-b from-slate-900 to-transparent"></div>
           </div>
@@ -158,7 +152,7 @@ const Home: React.FC = () => {
                 <h2 className="text-white text-4xl lg:text-6xl font-black tracking-tighter uppercase italic leading-none">Ready to scale your <br /> digital presence?</h2>
                 <p className="text-white/70 text-xl font-medium tracking-wide">Join 500+ companies that have grown with us.</p>
               </div>
-              <Link to="/configurator" className="bg-white text-primary font-black py-6 px-12 rounded-full text-xl uppercase tracking-widest hover:scale-105 transition-all active:scale-95 shadow-2xl">
+              <Link to="/configurator" className="bg-white text-primary font-black py-6 px-12 rounded-full text-xl uppercase tracking-widest hover:scale-105 transition-all active:scale-95 shadow-2xl text-center">
                 Start Now
               </Link>
             </div>
@@ -166,9 +160,8 @@ const Home: React.FC = () => {
         </section>
       </main>
 
-      <footer className="bg-slate-900 px-6 lg:px-20 py-20 relative z-40 text-white">
+      <footer className="bg-slate-900 px-6 lg:px-20 py-20 relative z-40 text-white font-sans">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-24">
-          {/* Columna 1: Logo y Eslogan */}
           <div className="flex flex-col gap-6">
             <img src="/logo/logoalt.png" alt="Studio Creativo" className="h-8 w-auto brightness-0 invert object-contain" />
             <p className="text-slate-400 text-sm leading-relaxed font-medium">
@@ -176,34 +169,32 @@ const Home: React.FC = () => {
             </p>
           </div>
 
-          {/* Columna 2: Contacto Directo */}
           <div className="flex flex-col gap-8">
             <h4 className="font-black italic uppercase tracking-[0.3em] text-[10px] text-primary">Contacto</h4>
             <div className="space-y-4 text-sm font-bold uppercase tracking-widest text-slate-300">
               <a href="mailto:screativo.mkt@gmail.com" className="hover:text-primary transition-colors flex items-center gap-3">
-                <Globe size={16} className="text-primary" />
+                <Globe size={16} className="text-primary fill-primary/10" />
                 screativo.mkt@gmail.com
               </a>
               <a href="tel:+525591877538" className="hover:text-primary transition-colors flex items-center gap-3">
-                <Target size={16} className="text-primary" />
+                <Target size={16} className="text-primary fill-primary/10" />
                 55 9187 7538
               </a>
             </div>
           </div>
 
-          {/* Columna 3: Social & Navegación */}
           <div className="flex flex-col gap-8">
             <h4 className="font-black italic uppercase tracking-[0.3em] text-[10px] text-primary">Siguenos</h4>
             <div className="flex flex-col gap-4 text-sm font-bold uppercase tracking-widest text-slate-300">
               <a href="https://www.facebook.com/share/1NpSLY1fM9/" target="_blank" rel="noreferrer" className="hover:text-primary transition-colors">Facebook</a>
-              <a href="#services" className="hover:text-primary transition-colors">Servicios</a>
-              <a href="#why-us" className="hover:text-primary transition-colors">Nosotros</a>
+              <a href="#services" className="hover:text-primary transition-colors">{t('nav.services')}</a>
+              <a href="#why-us" className="hover:text-primary transition-colors">{t('nav.about')}</a>
             </div>
           </div>
         </div>
         
         <div className="max-w-7xl mx-auto border-t border-white/10 mt-20 pt-10 flex flex-col md:flex-row justify-between items-center gap-6 text-[10px] font-black tracking-widest uppercase text-slate-500">
-          <p>© 2026 Studio Creativo. Todos los derechos reservados.</p>
+          <p>{t('footer.rights')}</p>
           <span>México.</span>
         </div>
       </footer>
@@ -214,7 +205,7 @@ const Home: React.FC = () => {
 const ServiceBox = ({ icon, title, desc }: { icon: React.ReactNode, title: string, desc: string }) => (
   <div className="group flex flex-col gap-8 rounded-3xl border border-slate-200 bg-white p-10 transition-all hover:-translate-y-3 hover:shadow-2xl hover:shadow-primary/10">
     <div className="size-16 rounded-2xl bg-primary/5 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-500 group-hover:rotate-6">
-      {React.cloneElement(icon as React.ReactElement, { size: 32, strokeWidth: 2.5 })}
+      {React.isValidElement(icon) ? React.cloneElement(icon as React.ReactElement<any>, { size: 32, strokeWidth: 2.5 }) : icon}
     </div>
     <div className="flex flex-col gap-4">
       <h3 className="text-slate-900 text-2xl font-black italic uppercase tracking-tighter leading-none">{title}</h3>
@@ -228,7 +219,9 @@ const ServiceBox = ({ icon, title, desc }: { icon: React.ReactNode, title: strin
 
 const WhyBox = ({ icon, title, desc, mt }: { icon: React.ReactNode, title: string, desc: string, mt: string }) => (
   <div className={`flex flex-col gap-6 p-8 rounded-3xl bg-white border border-slate-100 shadow-premium ${mt}`}>
-    <div className="text-primary">{React.cloneElement(icon as React.ReactElement, { size: 28 })}</div>
+    <div className="text-primary">
+      {React.isValidElement(icon) ? React.cloneElement(icon as React.ReactElement<any>, { size: 28 }) : icon}
+    </div>
     <div className="space-y-1">
       <h4 className="font-black italic uppercase text-lg leading-none tracking-tight">{title}</h4>
       <p className="text-xs text-slate-500 font-medium leading-relaxed">{desc}</p>

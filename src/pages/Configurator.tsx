@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Navbar } from '../components/Navbar';
 import { services, calculateTotal } from '../utils/pricing';
-import { Check, Sparkles, Send, FileText } from 'lucide-react';
+import { Check, Send, FileText } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Configurator: React.FC = () => {
@@ -21,13 +21,13 @@ const Configurator: React.FC = () => {
   };
 
   return (
-    <div className="bg-background-light min-h-screen text-slate-900 font-display">
+    <div className="bg-background-light min-h-screen text-slate-900 font-sans">
       <Navbar />
       
       <main className="pt-24 pb-20 px-6 lg:px-20">
         <div className="max-w-7xl mx-auto">
           {/* Hero Section */}
-          <div className="max-w-3xl mb-16">
+          <div className="max-w-3xl mb-16 pt-10">
             <h1 className="text-5xl lg:text-7xl font-black tracking-tight leading-none uppercase italic mb-6">
               Build Your <br /> <span className="text-primary not-italic">Custom Package</span>
             </h1>
@@ -58,8 +58,8 @@ const Configurator: React.FC = () => {
                     >
                       <div className="w-full md:w-48 h-32 bg-slate-100 rounded-2xl overflow-hidden flex-shrink-0 relative">
                         <div className={`absolute inset-0 bg-primary opacity-0 group-hover:opacity-10 transition-opacity`}></div>
-                        <div className="w-full h-full flex items-center justify-center text-primary/40 font-black italic text-4xl select-none">
-                           DE
+                        <div className="w-full h-full flex items-center justify-center text-primary/40 font-black italic text-4xl select-none uppercase">
+                           {service.id.substring(0, 2)}
                         </div>
                       </div>
                       
@@ -109,7 +109,7 @@ const Configurator: React.FC = () => {
                     
                     <div className="space-y-4">
                       <div className="flex justify-between items-center text-xs font-black uppercase tracking-widest opacity-40">
-                        <span>Total Implementation</span>
+                        <span>Subtotal</span>
                         <span>${totals.subtotal.toLocaleString('es-MX')}</span>
                       </div>
                       <AnimatePresence>
@@ -136,11 +136,14 @@ const Configurator: React.FC = () => {
                     </div>
 
                     <div className="space-y-4">
-                      <button className="flex items-center justify-center w-full h-16 bg-primary text-white rounded-2xl font-black uppercase tracking-widest text-xs transition-all hover:scale-[1.02] active:scale-95 shadow-xl shadow-primary/20 gap-3">
+                      <button 
+                        className="flex items-center justify-center w-full h-16 bg-primary text-white rounded-2xl font-black uppercase tracking-widest text-xs transition-all hover:scale-[1.02] active:scale-95 shadow-xl shadow-primary/20 gap-3"
+                        onClick={() => alert('Feature coming soon!')}
+                      >
                         <FileText size={18} />
                         Get Formal PDF
                       </button>
-                      <a href="#contact" className="flex items-center justify-center w-full h-16 border-2 border-white/10 text-white rounded-2xl font-black uppercase tracking-widest text-xs transition-all hover:bg-white hover:text-slate-900">
+                      <a href="#contact" className="flex items-center justify-center w-full h-16 border-2 border-white/10 text-white rounded-2xl font-black uppercase tracking-widest text-xs transition-all hover:bg-white hover:text-slate-900 text-center">
                         Request Discovery
                       </a>
                     </div>
@@ -173,7 +176,7 @@ const Configurator: React.FC = () => {
                   <div className="space-y-3">
                     <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-4">Project Details</label>
                     <textarea 
-                      className="w-full bg-slate-50 border-2 border-slate-50 rounded-[2rem] px-8 py-6 text-sm font-bold focus:bg-white focus:border-primary outline-none transition-all resize-none" 
+                      className="w-full bg-slate-50 border-2 border-slate-50 rounded-[2rem] px-8 py-6 text-sm font-bold focus:bg-white focus:border-primary outline-none transition-all resize-none text-slate-900" 
                       placeholder="Tell us about your goals..." 
                       rows={4}
                     />
@@ -188,11 +191,11 @@ const Configurator: React.FC = () => {
         </div>
       </main>
 
-      <footer className="bg-slate-900 py-12 px-10 text-white">
+      <footer className="bg-slate-900 py-12 px-10 text-white font-sans">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-black tracking-widest uppercase opacity-40">
-           <span>D&E STUDIO CREATIVO</span>
+           <span>STUDIO CREATIVO</span>
            <div className="flex gap-10">
-              <a href="#" className="hover:text-primary transition-colors">Twitter</a>
+              <a href="https://www.facebook.com/share/1NpSLY1fM9/" target="_blank" rel="noreferrer" className="hover:text-primary transition-colors">Facebook</a>
               <a href="#" className="hover:text-primary transition-colors">LinkedIn</a>
            </div>
            <span>© 2026 Mexico.</span>
@@ -202,11 +205,17 @@ const Configurator: React.FC = () => {
   );
 };
 
-const FormInput = ({ label, placeholder, type = "text" }: { label: string, placeholder: string, type?: string }) => (
-  <div className="space-y-3">
+interface FormInputProps {
+  label: string;
+  placeholder: string;
+  type?: string;
+}
+
+const FormInput: React.FC<FormInputProps> = ({ label, placeholder, type = "text" }) => (
+  <div className="space-y-3 text-left">
     <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-4">{label}</label>
     <input 
-      className="w-full bg-slate-50 border-2 border-slate-50 rounded-full px-8 py-4 text-sm font-bold focus:bg-white focus:border-primary outline-none transition-all" 
+      className="w-full bg-slate-50 border-2 border-slate-50 rounded-full px-8 py-4 text-sm font-bold focus:bg-white focus:border-primary outline-none transition-all text-slate-900" 
       placeholder={placeholder} 
       type={type} 
     />
