@@ -1,0 +1,28 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-studio-white text-studio-black font-sans antialiased;
+    cursor: none;
+  }
+  
+  a, button, input, textarea {
+    cursor: none !important;
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 rounded-xl font-semibold bg-studio-black text-studio-white hover:bg-opacity-90 transition-all active:scale-95;
+  }
+  
+  .glass-nav {
+    @apply fixed top-0 w-full z-50 bg-studio-white/80 backdrop-blur-md border-b border-gray-200;
+  }
+  
+  .card-service {
+    @apply p-6 bg-studio-white border border-gray-200 rounded-2xl transition-all duration-300 hover:border-studio-blue hover:shadow-xl hover:-translate-y-1;
+  }
+}

@@ -1,0 +1,54 @@
+{
+  "translation": {
+    "nav": {
+      "home": "Home",
+      "services": "Services",
+      "about": "About",
+      "contact": "Contact",
+      "configurator": "Get Quote"
+    },
+    "hero": {
+      "title_1": "Elevating",
+      "title_2": "Digital",
+      "title_3": "Experiences",
+      "subtitle": "High-end design and strategy for brands looking to stand out in a competitive environment.",
+      "cta": "Start Project",
+      "explore": "View Services",
+      "creative_limit": "STUDIO CREATIVO"
+    },
+    "services": {
+      "badge": "Specialties",
+      "title": "Solutions that transform local businesses",
+      "desc": "In Mexico, digitizing your business with Studio Creativo is the key to growth.",
+      "landing_name": "Pro Landing Page",
+      "landing_desc": "An optimized landing page designed to capture leads and generate fast sales.",
+      "web_complete_name": "Complete Website",
+      "web_complete_desc": "Multi-page website with advanced SEO and premium responsive design.",
+      "custom_system_name": "Custom System",
+      "custom_system_desc": "Software development specifically tailored to your unique business needs.",
+      "marketing": "Digital Marketing",
+      "marketing_desc": "Strategic campaigns that generate real sales.",
+      "photography": "Professional Photography",
+      "photography_desc": "Product photos that charm your customers.",
+      "web": "Web Design",
+      "web_desc": "Fast and Google-optimized pages.",
+      "video": "Video Editing",
+      "video_desc": "Videos that tell your business's story.",
+      "content": "Content Creation",
+      "content_desc": "Valuable content to stand out on social media.",
+      "social": "Social Media Management",
+      "social_desc": "Professional community management."
+    },
+    "configurator": {
+      "badge": "Smart Quoter",
+      "title": "Build Your Ideal Package",
+      "subtitle": "Select the services you need and Studio Creativo will calculate your quote instantly.",
+      "discount_label": "Mixed Discount",
+      "total_label": "Total Investment"
+    },
+    "footer": {
+      "description": "Studio Creativo drives digital success for local businesses in Mexico with world-class design and strategy.",
+      "rights": "© 2026 STUDIO CREATIVO. ALL RIGHTS RESERVED."
+    }
+  }
+}
