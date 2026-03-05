@@ -170,7 +170,7 @@ const Home: React.FC = () => {
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-24">
           {/* Columna 1: Logo y Eslogan */}
           <div className="flex flex-col gap-6">
-            <img src="/logo/logoalt.png" alt="Studio Creativo" className="h-12 w-auto brightness-0 invert" />
+            <img src="/logo/logoalt.png" alt="Studio Creativo" className="h-8 w-auto brightness-0 invert object-contain" />
             <p className="text-slate-400 text-sm leading-relaxed font-medium">
               Transformando la visión de negocios locales en realidades digitales de alto impacto en México.
             </p>
