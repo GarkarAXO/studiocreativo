@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Globe, Moon, Rocket, Menu } from 'lucide-react';
+import { Globe, Moon, Menu } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 export const Navbar: React.FC = () => {
