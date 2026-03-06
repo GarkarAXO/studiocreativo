@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Navbar } from '../../components/Navbar';
-import { Users, FileText, TrendingUp, LogOut, Loader2, Calendar, Mail, Phone, Briefcase } from 'lucide-react';
+import { Users, FileText, TrendingUp, LogOut, Loader2, Calendar, Mail } from 'lucide-react';
 
 interface Quote {
   id: string;
@@ -79,6 +79,13 @@ const AdminDashboard: React.FC = () => {
       <Navbar />
       
       <main className="pt-32 pb-20 px-6 lg:px-20 max-w-7xl mx-auto">
+        {/* Error Message */}
+        {error && (
+          <div className="mb-8 p-4 bg-red-500/10 border border-red-500/20 text-red-500 rounded-2xl text-xs font-bold uppercase tracking-widest text-center">
+            {error}
+          </div>
+        )}
+
         {/* Header Dashboard */}
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6 mb-12">
           <div>

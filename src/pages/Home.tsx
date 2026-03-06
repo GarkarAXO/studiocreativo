@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { Navbar } from '../components/Navbar';
 import { BackgroundEffect } from '../components/BackgroundEffect';
 import { FloatingElements } from '../components/FloatingElements';
-import { Target, Camera, Layout, Video, Globe2, Share2, ArrowRight, Users, TrendingUp, Check, Play, Globe } from 'lucide-react';
+import { Target, Camera, Layout, Video, Globe2, Share2, ArrowRight, Users, TrendingUp, Check, Globe } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { SEO } from '../components/SEO';
 
@@ -281,8 +281,8 @@ const ServiceBox = ({ icon, title, desc }: { icon: React.ReactNode, title: strin
   </div>
 );
 
-const WhyBox = ({ icon, title, desc, mt }: { icon: React.ReactNode, title: string, desc: string, mt: string }) => (
-  <div className={`flex flex-col gap-6 p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-white/5 shadow-premium ${mt} transition-colors text-left`}>
+const WhyBox = ({ icon, title, desc, mt }: { icon: React.ReactNode, title: string, desc: string, mt?: string }) => (
+  <div className={`flex flex-col gap-6 p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-white/5 shadow-premium ${mt || ''} transition-colors text-left`}>
     <div className="text-primary">
       {React.isValidElement(icon) ? React.cloneElement(icon as React.ReactElement<any>, { size: 28 }) : icon}
     </div>
