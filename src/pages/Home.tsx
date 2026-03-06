@@ -4,7 +4,7 @@ import { motion } from 'framer-motion';
 import { Navbar } from '../components/Navbar';
 import { BackgroundEffect } from '../components/BackgroundEffect';
 import { FloatingElements } from '../components/FloatingElements';
-import { Target, Camera, Layout, Video, Globe2, Share2, ArrowRight, Rocket, TrendingUp, Check, Play, Globe } from 'lucide-react';
+import { Target, Camera, Layout, Video, Globe2, Share2, ArrowRight, Users, TrendingUp, Check, Play, Globe } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const Home: React.FC = () => {
@@ -40,12 +40,12 @@ const Home: React.FC = () => {
           <BackgroundEffect />
           <FloatingElements />
 
-          <div className="relative z-20 max-w-4xl mx-auto px-6 text-center">
+          <div className="relative z-20 max-w-4xl mx-auto px-6 text-center w-full">
             <motion.div
               variants={containerVariants}
               initial="hidden"
               animate="visible"
-              className="flex flex-col items-center gap-10"
+              className="flex flex-col items-center gap-10 w-full"
             >
               <div className="space-y-2">
                 {[t('hero.title_1'), t('hero.title_2'), t('hero.title_3')].map((line, index) => (
@@ -70,25 +70,25 @@ const Home: React.FC = () => {
                   {t('hero.subtitle')}
                 </p>
               </motion.div>
-{/* CTAs con entrada escalonada y feedback háptico */}
-<motion.div 
-  initial={{ opacity: 0, y: 20 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ delay: 0.7, duration: 0.8 }}
-  className="flex flex-col sm:flex-row gap-6 mt-4 w-full px-10 md:px-0"
->
-  <motion.div whileTap={{ scale: 0.9 }} className="w-full sm:w-auto">
-    <Link to="/configurator" className="flex min-w-[200px] items-center justify-center rounded-full h-16 px-10 bg-slate-900 dark:bg-primary text-white text-xs font-black uppercase tracking-widest transition-all hover:bg-primary dark:hover:bg-white dark:hover:text-primary active:scale-95 shadow-xl relative z-40 text-center">
-      {t('hero.cta')}
-    </Link>
-  </motion.div>
-  <motion.div whileTap={{ scale: 0.9 }} className="w-full sm:w-auto">
-    <button className="flex w-full sm:min-w-[200px] items-center justify-center rounded-full h-16 px-10 border border-slate-200 dark:border-white/10 bg-slate-900/5 dark:bg-white/5 text-slate-900 dark:text-white text-xs font-black uppercase tracking-widest transition-all hover:bg-slate-900/10 dark:hover:bg-white/10 active:scale-95 gap-3 relative z-40">
-      <Play size={14} className="fill-current" />
-      Showreel 2026
-    </button>
-  </motion.div>
-</motion.div>
+
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.7, duration: 0.8 }}
+                className="flex flex-col sm:flex-row gap-6 mt-4 w-full sm:w-auto items-center justify-center mx-auto"
+              >
+                <motion.div whileTap={{ scale: 0.9 }} className="w-full sm:w-auto flex justify-center">
+                  <Link to="/configurator" className="flex min-w-[200px] items-center justify-center rounded-full h-16 px-10 bg-slate-900 dark:bg-primary text-white text-xs font-black uppercase tracking-widest transition-all hover:bg-primary dark:hover:bg-white dark:hover:text-primary active:scale-95 shadow-xl relative z-40 text-center">
+                    {t('hero.cta')}
+                  </Link>
+                </motion.div>
+                <motion.div whileTap={{ scale: 0.9 }} className="w-full sm:w-auto flex justify-center">
+                  <button className="flex w-full sm:min-w-[200px] items-center justify-center rounded-full h-16 px-10 border border-slate-200 dark:border-white/10 bg-slate-900/5 dark:bg-white/5 text-slate-900 dark:text-white text-xs font-black uppercase tracking-widest transition-all hover:bg-slate-900/10 dark:hover:bg-white/10 active:scale-95 gap-3 relative z-40">
+                    <Play size={14} className="fill-current" />
+                    {t('hero.showreel')}
+                  </button>
+                </motion.div>
+              </motion.div>
             </motion.div>
           </div>
 
@@ -123,7 +123,7 @@ const Home: React.FC = () => {
             <div className="grid lg:grid-cols-2 gap-20 items-center">
               <div className="grid grid-cols-2 gap-6 order-2 lg:order-1">
                 <WhyBox icon={<TrendingUp />} title="Data-Driven" desc="Decisiones respaldadas por analítica y mercado." mt="mt-0" />
-                <WhyBox icon={<Rocket />} title="Expert Team" desc="Colabora con mentes creativas y veteranos." mt="mt-12" />
+                <WhyBox icon={<Users />} title="Expert Team" desc="Colabora con mentes creativas y veteranos." mt="mt-12" />
                 <WhyBox icon={<Target />} title="Creative Edge" desc="Diseños que definen tu marca." mt="-mt-12" />
                 <WhyBox icon={<Check />} title="ROI Focused" desc="Tu inversión crece con resultados reales." mt="mt-0" />
               </div>
@@ -150,10 +150,10 @@ const Home: React.FC = () => {
         <section className="px-6 lg:px-20 py-20 relative z-40 bg-white dark:bg-slate-950 transition-colors">
           <div className="max-w-[1200px] mx-auto bg-primary rounded-[3rem] p-12 lg:p-24 relative overflow-hidden text-center lg:text-left shadow-2xl shadow-primary/40 group">
             <div className="absolute top-0 right-0 w-1/3 h-full bg-white/5 skew-x-[-20deg] translate-x-1/2 group-hover:translate-x-1/3 transition-transform duration-700"></div>
-            <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12">
+            <div className="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-12 text-left">
               <div className="flex flex-col gap-6 max-w-[600px]">
-                <h2 className="text-white text-4xl lg:text-6xl font-black tracking-tighter uppercase italic leading-none text-left">Ready to scale your <br /> digital presence?</h2>
-                <p className="text-white/70 text-xl font-medium tracking-wide text-left">Join 500+ companies that have grown with us.</p>
+                <h2 className="text-white text-4xl lg:text-6xl font-black tracking-tighter uppercase italic leading-none">Ready to scale your <br /> digital presence?</h2>
+                <p className="text-white/70 text-xl font-medium tracking-wide">Join 500+ companies that have grown with us.</p>
               </div>
               <Link to="/configurator" className="bg-white text-primary font-black py-6 px-12 rounded-full text-xl uppercase tracking-widest hover:scale-105 transition-all active:scale-95 shadow-2xl text-center">
                 Start Now
@@ -168,7 +168,7 @@ const Home: React.FC = () => {
           <div className="flex flex-col gap-6">
             <img src="/logo/logoalt.png" alt="Studio Creativo" className="h-8 w-auto brightness-0 invert object-contain" />
             <p className="text-slate-400 text-sm leading-relaxed font-medium">
-              Transformando la visión de negocios locales en realidades digitales de alto impacto en México.
+              {t('footer.description')}
             </p>
           </div>
 
@@ -187,7 +187,7 @@ const Home: React.FC = () => {
           </div>
 
           <div className="flex flex-col gap-8">
-            <h4 className="font-black italic uppercase tracking-[0.3em] text-[10px] text-primary text-left">Siguenos</h4>
+            <h4 className="font-black italic uppercase tracking-[0.3em] text-[10px] text-primary text-left">{t('footer.follow')}</h4>
             <div className="flex flex-col gap-4 text-sm font-bold uppercase tracking-widest text-slate-300 text-left">
               <a href="https://www.facebook.com/share/1NpSLY1fM9/" target="_blank" rel="noreferrer" className="hover:text-primary transition-colors text-white">Facebook</a>
               <a href="#services" className="hover:text-primary transition-colors text-white">{t('nav.services')}</a>
@@ -206,7 +206,7 @@ const Home: React.FC = () => {
 };
 
 const ServiceBox = ({ icon, title, desc }: { icon: React.ReactNode, title: string, desc: string }) => (
-  <div className="group flex flex-col gap-8 rounded-3xl border border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/50 p-10 transition-all hover:-translate-y-3 hover:shadow-2xl hover:shadow-primary/10">
+  <div className="group flex flex-col gap-8 rounded-3xl border border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/50 p-10 transition-all hover:-translate-y-3 hover:shadow-2xl hover:shadow-primary/10 text-left">
     <div className="size-16 rounded-2xl bg-primary/5 dark:bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-500 group-hover:rotate-6">
       {React.isValidElement(icon) ? React.cloneElement(icon as React.ReactElement<any>, { size: 32, strokeWidth: 2.5 }) : icon}
     </div>
@@ -221,11 +221,11 @@ const ServiceBox = ({ icon, title, desc }: { icon: React.ReactNode, title: strin
 );
 
 const WhyBox = ({ icon, title, desc, mt }: { icon: React.ReactNode, title: string, desc: string, mt: string }) => (
-  <div className={`flex flex-col gap-6 p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-white/5 shadow-premium ${mt} transition-colors`}>
+  <div className={`flex flex-col gap-6 p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-white/5 shadow-premium ${mt} transition-colors text-left`}>
     <div className="text-primary">
       {React.isValidElement(icon) ? React.cloneElement(icon as React.ReactElement<any>, { size: 28 }) : icon}
     </div>
-    <div className="space-y-1 text-left">
+    <div className="space-y-1">
       <h4 className="font-black italic uppercase text-lg dark:text-white leading-none tracking-tight">{title}</h4>
       <p className="text-xs text-slate-500 dark:text-slate-400 font-medium leading-relaxed">{desc}</p>
     </div>

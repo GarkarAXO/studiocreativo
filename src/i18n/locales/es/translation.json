@@ -14,7 +14,8 @@
       "subtitle": "Diseño y estrategia de alto nivel para marcas que buscan destacar en un entorno competitivo.",
       "cta": "Empezar Proyecto",
       "explore": "Ver Servicios",
-      "creative_limit": "STUDIO CREATIVO"
+      "showreel": "Showreel 2026",
+      "projects_count": "+500 Proyectos Seleccionados"
     },
     "services": {
       "badge": "Especialidades",
@@ -44,11 +45,25 @@
       "title": "Arma tu Paquete Ideal",
       "subtitle": "Selecciona los servicios que necesitas y Studio Creativo calculará tu presupuesto al instante.",
       "discount_label": "Descuento Mixto",
-      "total_label": "Inversión Total"
+      "total_label": "Inversión Total",
+      "cta_pdf": "Descargar Cotización PDF",
+      "generating": "Generando...",
+      "fill_form_hint": "Llena el formulario para obtener el PDF",
+      "request_discovery": "Solicitar Sesión"
+    },
+    "admin": {
+      "login_title": "Acceso Administrativo",
+      "login_subtitle": "Inicia sesión para gestionar Studio Creativo",
+      "email": "Correo Electrónico",
+      "password": "Contraseña",
+      "sign_in": "Entrar",
+      "thank_you": "¡Gracias!",
+      "request_received": "Tu solicitud ha sido recibida. Nos contactaremos pronto."
     },
     "footer": {
       "description": "Studio Creativo impulsa el éxito digital de los comercios locales en México con diseño y estrategia de nivel mundial.",
-      "rights": "© 2026 STUDIO CREATIVO. TODOS LOS DERECHOS RESERVADOS."
+      "rights": "© 2026 STUDIO CREATIVO. TODOS LOS DERECHOS RESERVADOS.",
+      "follow": "Síguenos"
     }
   }
 }

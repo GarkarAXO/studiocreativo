@@ -14,7 +14,8 @@
       "subtitle": "High-end design and strategy for brands looking to stand out in a competitive environment.",
       "cta": "Start Project",
       "explore": "View Services",
-      "creative_limit": "STUDIO CREATIVO"
+      "showreel": "Showreel 2026",
+      "projects_count": "+500 Selected Projects"
     },
     "services": {
       "badge": "Specialties",
@@ -44,11 +45,25 @@
       "title": "Build Your Ideal Package",
       "subtitle": "Select the services you need and Studio Creativo will calculate your quote instantly.",
       "discount_label": "Mixed Discount",
-      "total_label": "Total Investment"
+      "total_label": "Total Investment",
+      "cta_pdf": "Download Quote PDF",
+      "generating": "Generating...",
+      "fill_form_hint": "Fill form to get PDF",
+      "request_discovery": "Request Discovery"
+    },
+    "admin": {
+      "login_title": "Admin Access",
+      "login_subtitle": "Sign in to manage Studio Creativo",
+      "email": "Email Address",
+      "password": "Password",
+      "sign_in": "Sign In",
+      "thank_you": "Thank You!",
+      "request_received": "Your request has been received. Our team will contact you shortly."
     },
     "footer": {
       "description": "Studio Creativo drives digital success for local businesses in Mexico with world-class design and strategy.",
-      "rights": "© 2026 STUDIO CREATIVO. ALL RIGHTS RESERVED."
+      "rights": "© 2026 STUDIO CREATIVO. ALL RIGHTS RESERVED.",
+      "follow": "Follow Us"
     }
   }
 }
