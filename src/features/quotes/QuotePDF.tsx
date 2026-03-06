@@ -1,5 +1,5 @@
 import { Document, Page, Text, View, StyleSheet, Image, Font } from '@react-pdf/renderer';
-import { Service } from '../../utils/pricing';
+import type { Service } from '../../utils/pricing';
 
 // Registro de fuente para un look profesional
 Font.register({
