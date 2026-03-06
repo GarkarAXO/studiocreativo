@@ -14,11 +14,13 @@ export const BackgroundEffect: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const particles = useRef<Particle[]>([]);
   const hue = useRef(0);
+  const lastMouseMove = useRef(0);
+  const gravity = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-    const ctx = canvas.getContext('2d');
+    const ctx = canvas.getContext('2d', { alpha: true });
     if (!ctx) return;
 
     const resizeCanvas = () => {
@@ -29,39 +31,68 @@ export const BackgroundEffect: React.FC = () => {
     window.addEventListener('resize', resizeCanvas);
     resizeCanvas();
 
+    // Lógica de Giroscopio para Móvil
+    const handleOrientation = (e: DeviceOrientationEvent) => {
+      if (e.gamma && e.beta) {
+        // gamma es izquierda/derecha (-90 a 90)
+        // beta es adelante/atrás (-180 a 180)
+        gravity.current.x = e.gamma / 20; 
+        gravity.current.y = e.beta / 20;
+      }
+    };
+
+    if (window.DeviceOrientationEvent) {
+      window.addEventListener('deviceorientation', handleOrientation);
+    }
+
     const createParticle = (x: number, y: number) => {
-      const size = Math.random() * 15 + 5;
-      const color = `hsla(${hue.current}, 100%, 50%, 0.8)`;
-      const speedX = (Math.random() * 4 - 2);
-      const speedY = (Math.random() * 4 - 2);
+      const size = Math.random() * 8 + 2;
+      const color = `hsla(${hue.current}, 100%, 50%, 0.5)`;
+      const speedX = (Math.random() * 2 - 1);
+      const speedY = (Math.random() * 2 - 1);
       particles.current.push({ x, y, size, color, weight: 1, speedX, speedY });
     };
 
-    const handleMouseMove = (e: MouseEvent) => {
-      // Creamos múltiples partículas por cada movimiento para el efecto "explosión"
-      for (let i = 0; i < 5; i++) {
-        createParticle(e.clientX, e.clientY);
+    const handleInput = (e: MouseEvent | TouchEvent) => {
+      const now = Date.now();
+      if (now - lastMouseMove.current < 16) return;
+      lastMouseMove.current = now;
+
+      let x, y;
+      if (e instanceof MouseEvent) {
+        x = e.clientX;
+        y = e.clientY;
+      } else {
+        x = e.touches[0].clientX;
+        y = e.touches[0].clientY;
       }
-      hue.current += 2; // El color va rotando por el arcoíris
+
+      const count = window.innerWidth < 768 ? 2 : 4;
+      for (let i = 0; i < count; i++) {
+        createParticle(x, y);
+      }
+      hue.current += 3;
     };
 
     const animate = () => {
-      // Limpiamos el canvas con una opacidad baja para dejar un rastro (trail)
-      ctx.fillStyle = 'rgba(250, 250, 250, 0.1)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       for (let i = 0; i < particles.current.length; i++) {
         const p = particles.current[i];
+        
+        // Aplicamos la gravedad del giroscopio
+        p.speedX += gravity.current.x * 0.1;
+        p.speedY += gravity.current.y * 0.1;
+        
         p.x += p.speedX;
         p.y += p.speedY;
-        p.size *= 0.96; // Se van encogiendo
+        p.size *= 0.96;
 
         ctx.fillStyle = p.color;
         ctx.beginPath();
         ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         ctx.fill();
 
-        // Eliminar partículas muy pequeñas para rendimiento
         if (p.size < 0.5) {
           particles.current.splice(i, 1);
           i--;
@@ -70,33 +101,24 @@ export const BackgroundEffect: React.FC = () => {
       requestAnimationFrame(animate);
     };
 
-    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mousemove', handleInput);
+    window.addEventListener('touchmove', handleInput, { passive: true });
     const animationId = requestAnimationFrame(animate);
 
     return () => {
       window.removeEventListener('resize', resizeCanvas);
-      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mousemove', handleInput);
+      window.removeEventListener('touchmove', handleInput);
+      window.removeEventListener('deviceorientation', handleOrientation);
       cancelAnimationFrame(animationId);
     };
   }, []);
 
   return (
-    <div className="fixed inset-0 z-0 overflow-hidden pointer-events-none bg-[#FAFAFA]">
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0"
-      />
-      {/* Cuadrícula técnica sutil por encima para dar estructura */}
-      <div 
-        className="absolute inset-0 opacity-[0.03] mix-blend-multiply" 
-        style={{ 
-          backgroundImage: `linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)`,
-          backgroundSize: '60px 60px'
-        }}
-      ></div>
-      {/* Grano fino para un look editorial */}
-      <div className="absolute inset-0 opacity-[0.05] mix-blend-overlay pointer-events-none" 
-           style={{ backgroundImage: `url('https://grainy-gradients.vercel.app/noise.svg')` }}></div>
+    <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none will-change-transform">
+      <canvas ref={canvasRef} className="absolute inset-0 opacity-40 dark:opacity-25" />
+      <div className="absolute inset-0 opacity-[0.02] dark:opacity-[0.05] mix-blend-multiply dark:mix-blend-screen" 
+           style={{ backgroundImage: `linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)`, backgroundSize: '60px 60px' }}></div>
     </div>
   );
 };

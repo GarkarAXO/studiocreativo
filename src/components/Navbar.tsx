@@ -1,64 +1,107 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { Globe, Moon, Menu } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Globe, Moon, Sun, Home, Layout, FileText } from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+import { useDarkMode } from '../hooks/useDarkMode';
 
 export const Navbar: React.FC = () => {
   const { t, i18n } = useTranslation();
+  const location = useLocation();
+  const { theme, toggleTheme } = useDarkMode();
 
   const toggleLanguage = () => {
     i18n.changeLanguage(i18n.language === 'es' ? 'en' : 'es');
   };
 
+  const isActive = (path: string) => location.pathname === path;
+
   return (
-    <div className="fixed top-5 left-0 w-full z-[100] px-4 md:px-10 pointer-events-none font-sans">
-      <nav className="max-w-4xl mx-auto flex items-center justify-between pointer-events-auto h-20 px-8 rounded-full border border-white/20 bg-white/30 backdrop-blur-2xl shadow-[0_8px_32px_0_rgba(0,0,0,0.1)]">
-        
-        {/* Logo Oficial */}
-        <Link to="/" className="flex items-center group">
-          <img 
-            src="/logo/logoalt.png" 
-            alt="Studio Creativo" 
-            className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-          />
-        </Link>
-        
-        {/* Navegación y Acciones: Todo al lado Derecho */}
-        <div className="flex items-center gap-8 md:gap-10">
-          {/* Enlaces de Navegación Traducidos */}
-          <div className="hidden lg:flex items-center gap-8 font-black text-[10px] uppercase tracking-[0.3em] text-slate-600">
-            <a href="/#services" className="hover:text-primary transition-colors">{t('nav.services')}</a>
-            <a href="/#why-us" className="hover:text-primary transition-colors">{t('nav.about')}</a>
-          </div>
-
-          <div className="flex items-center gap-4 md:gap-6">
-            <div className="hidden sm:flex items-center gap-4 text-slate-600">
-               <button 
-                  onClick={toggleLanguage}
-                  className="text-[10px] font-black uppercase flex items-center gap-1.5 hover:text-primary transition-colors border-r border-slate-200 pr-4"
-                  title="Change Language"
-                >
-                  <Globe size={14} className="text-primary fill-primary/10" />
-                  {i18n.language.toUpperCase()}
-                </button>
-                <button className="hover:text-primary transition-colors" title="Toggle Theme">
-                  <Moon size={16} />
-                </button>
+    <>
+      {/* --- NAVBAR SUPERIOR --- */}
+      <div className="fixed top-0 md:top-5 left-0 w-full z-[100] px-0 md:px-10 pointer-events-none font-sans">
+        <nav className="max-w-4xl mx-auto flex items-center justify-between pointer-events-auto 
+                        h-16 md:h-20 px-6 md:px-8 
+                        rounded-none md:rounded-full 
+                        border-b md:border border-slate-200 dark:border-slate-800 
+                        bg-white/30 dark:bg-slate-900/30 backdrop-blur-2xl shadow-2xl md:shadow-[0_8px_32px_0_rgba(0,0,0,0.1)] transition-all duration-500">
+          
+          {/* Logo */}
+          <Link to="/" className="flex items-center group">
+            <img 
+              src="/logo/logoalt.png" 
+              alt="Studio Creativo" 
+              className={`h-8 md:h-10 w-auto object-contain transition-all duration-300 group-hover:scale-105 ${theme === 'dark' ? 'brightness-0 invert' : ''}`}
+            />
+          </Link>
+          
+          {/* Acciones */}
+          <div className="flex items-center gap-4 md:gap-10">
+            {/* Links solo visibles en Desktop */}
+            <div className="hidden lg:flex items-center gap-8 font-black text-[10px] uppercase tracking-[0.3em] text-slate-600 dark:text-slate-400">
+              <a href="/#services" className="hover:text-primary transition-colors">{t('nav.services')}</a>
+              <a href="/#why-us" className="hover:text-primary transition-colors">{t('nav.about')}</a>
             </div>
 
-            <Link 
-              to="/configurator" 
-              className="flex items-center justify-center h-9 px-6 bg-primary text-white rounded-full text-[10px] font-black uppercase tracking-widest transition-colors hover:bg-primary/90 active:scale-95 shadow-lg shadow-primary/20"
-            >
-              {t('nav.configurator')}
-            </Link>
-
-            <div className="lg:hidden text-slate-900">
-              <Menu size={24} />
+            <div className="flex items-center gap-3 md:gap-6">
+              <div className="flex items-center gap-3 md:gap-4 text-slate-600 dark:text-slate-400">
+                 <button 
+                    onClick={toggleLanguage}
+                    className="text-[10px] font-black uppercase flex items-center gap-1.5 hover:text-primary transition-colors border-r border-slate-200 dark:border-slate-800 pr-3 md:pr-4"
+                  >
+                    <Globe size={14} className="text-primary fill-primary/10" />
+                    {i18n.language.toUpperCase()}
+                  </button>
+                  <button 
+                    onClick={toggleTheme}
+                    className="hover:text-primary transition-colors p-1" 
+                    title="Toggle Theme"
+                  >
+                    {theme === 'dark' ? <Sun size={16} className="text-accent" /> : <Moon size={16} />}
+                  </button>
+              </div>
+              
+              <Link 
+                to="/configurator" 
+                className="hidden sm:flex items-center justify-center h-9 px-6 bg-primary text-white rounded-full text-[10px] font-black uppercase tracking-widest transition-colors hover:bg-primary/90 shadow-lg shadow-primary/20"
+              >
+                {t('nav.configurator')}
+              </Link>
             </div>
           </div>
-        </div>
-      </nav>
+        </nav>
+      </div>
+
+      {/* --- TAB BAR INFERIOR (Solo Mobile) --- */}
+      <div className="md:hidden fixed bottom-0 left-0 w-full z-[100] px-4 pb-6 pointer-events-none">
+        <nav className="max-w-xs mx-auto flex items-center justify-around pointer-events-auto 
+                        h-16 rounded-full border border-slate-200 dark:border-slate-800 
+                        bg-white/40 dark:bg-slate-900/40 backdrop-blur-3xl shadow-2xl transition-all duration-500">
+          
+          <MobileNavLink to="/" icon={<Home size={20} />} label={t('nav.home')} active={isActive('/')} />
+          <MobileNavLink to="/#services" icon={<Layout size={20} />} label="Servicios" active={false} isAnchor />
+          <MobileNavLink to="/configurator" icon={<FileText size={20} />} label={t('nav.configurator')} active={isActive('/configurator')} />
+          
+        </nav>
+      </div>
+    </>
+  );
+};
+
+const MobileNavLink = ({ to, icon, label, active, isAnchor = false }: { to: string, icon: React.ReactNode, label: string, active: boolean, isAnchor?: boolean }) => {
+  const content = (
+    <div className={`flex flex-col items-center gap-1 transition-colors ${active ? 'text-primary' : 'text-slate-400 dark:text-slate-500'}`}>
+      {icon}
+      <span className="text-[8px] font-black uppercase tracking-tighter">{label}</span>
+    </div>
+  );
+
+  return (
+    <div className="flex-1">
+      {isAnchor ? (
+        <a href={to}>{content}</a>
+      ) : (
+        <Link to={to}>{content}</Link>
+      )}
     </div>
   );
 };

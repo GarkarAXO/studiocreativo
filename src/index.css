@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply bg-studio-white text-studio-black font-sans antialiased;
+    @apply bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans antialiased transition-colors duration-500;
     cursor: none;
   }
   
