@@ -1,69 +1,55 @@
 {
-  "translation": {
-    "nav": {
-      "home": "Home",
-      "services": "Services",
-      "about": "About",
-      "contact": "Contact",
-      "configurator": "Get Quote"
-    },
-    "hero": {
-      "title_1": "Elevating",
-      "title_2": "Digital",
-      "title_3": "Experiences",
-      "subtitle": "High-end design and strategy for brands looking to stand out in a competitive environment.",
-      "cta": "Start Project",
-      "explore": "View Services",
-      "showreel": "Showreel 2026",
-      "projects_count": "+500 Selected Projects"
-    },
-    "services": {
-      "badge": "Specialties",
-      "title": "Solutions that transform local businesses",
-      "desc": "In Mexico, digitizing your business with Studio Creativo is the key to growth.",
-      "landing_name": "Pro Landing Page",
-      "landing_desc": "An optimized landing page designed to capture leads and generate fast sales.",
-      "web_complete_name": "Complete Website",
-      "web_complete_desc": "Multi-page website with advanced SEO and premium responsive design.",
-      "custom_system_name": "Custom System",
-      "custom_system_desc": "Software development specifically tailored to your unique business needs.",
-      "marketing": "Digital Marketing",
-      "marketing_desc": "Strategic campaigns that generate real sales.",
-      "photography": "Professional Photography",
-      "photography_desc": "Product photos that charm your customers.",
-      "web": "Web Design",
-      "web_desc": "Fast and Google-optimized pages.",
-      "video": "Video Editing",
-      "video_desc": "Videos that tell your business's story.",
-      "content": "Content Creation",
-      "content_desc": "Valuable content to stand out on social media.",
-      "social": "Social Media Management",
-      "social_desc": "Professional community management."
-    },
-    "configurator": {
-      "badge": "Smart Quoter",
-      "title": "Build Your Ideal Package",
-      "subtitle": "Select the services you need and Studio Creativo will calculate your quote instantly.",
-      "discount_label": "Mixed Discount",
-      "total_label": "Total Investment",
-      "cta_pdf": "Download Quote PDF",
-      "generating": "Generating...",
-      "fill_form_hint": "Fill form to get PDF",
-      "request_discovery": "Request Discovery"
-    },
-    "admin": {
-      "login_title": "Admin Access",
-      "login_subtitle": "Sign in to manage Studio Creativo",
-      "email": "Email Address",
-      "password": "Password",
-      "sign_in": "Sign In",
-      "thank_you": "Thank You!",
-      "request_received": "Your request has been received. Our team will contact you shortly."
-    },
-    "footer": {
-      "description": "Studio Creativo drives digital success for local businesses in Mexico with world-class design and strategy.",
-      "rights": "© 2026 STUDIO CREATIVO. ALL RIGHTS RESERVED.",
-      "follow": "Follow Us"
-    }
+  "nav": {
+    "services": "Expertise",
+    "about": "About",
+    "configurator": "Get a Quote",
+    "home": "Home"
+  },
+  "hero": {
+    "title_1": "We Build",
+    "title_2": "Brands That",
+    "title_3": "Dominate.",
+    "subtitle": "We're not just another agency. We are your strategic partner in turning clicks into customers and visions into high-impact digital realities.",
+    "cta": "Start Now",
+    "showreel": "Showreel 2026"
+  },
+  "services": {
+    "badge": "Our Expertise",
+    "title": "Solutions That Scale",
+    "desc": "From the first design stroke to the last line of code, we focus on your return on investment.",
+    "marketing": "High-Level Marketing",
+    "marketing_desc": "Strategies that don't just look for likes, but real sales and market positioning.",
+    "photography": "Visual Production",
+    "photography_desc": "Photography and content that captures the essence of your product and stops the scroll.",
+    "web": "Web Architecture",
+    "web_desc": "Fast, secure sites designed to convert every visit into an opportunity.",
+    "video": "Video Storytelling",
+    "video_desc": "Audiovisual content that tells your brand story in a cinematic way.",
+    "content": "Content Strategy",
+    "content_desc": "Powerful narratives that build authority and loyalty with your audience.",
+    "social": "Paid Media & Social",
+    "social_desc": "Smart advertising and community management focused on organic and paid growth."
+  },
+  "why": {
+    "title": "Why Trust Us?",
+    "subtitle": "Studio Creativo",
+    "desc": "We hate generic as much as you do. Our methodology blends technical precision with creative madness to ensure your brand doesn't just exist—it stands out.",
+    "reason1_title": "Strategic Vision",
+    "reason1_desc": "Every pixel has a purpose. We don't design on a whim; we design to sell.",
+    "reason2_title": "Zero Slop",
+    "reason2_desc": "Handcrafted content made by humans, for humans. No mediocre AI shortcuts.",
+    "reason3_title": "Tangible Results",
+    "reason3_desc": "Clear reports. No vanity metrics, just real business growth.",
+    "reason4_title": "Boutique Support",
+    "reason4_desc": "Personalized attention. Your project is our priority, not just another number.",
+    "check1_title": "Tailored Strategies",
+    "check1_desc": "Your business is unique; your strategy should be too.",
+    "check2_title": "Full Transparency",
+    "check2_desc": "You'll know exactly where every cent of your budget is being invested."
+  },
+  "footer": {
+    "description": "Transforming the digital landscape in Mexico with bold creativity and cutting-edge technology.",
+    "follow": "Follow Us",
+    "rights": "© 2026 Studio Creativo. All rights reserved."
   }
 }

@@ -22,16 +22,16 @@ export const Navbar: React.FC = () => {
         <nav aria-label="Navegación principal" className="max-w-4xl mx-auto flex items-center justify-between pointer-events-auto 
                         h-16 md:h-20 px-6 md:px-8 
                         rounded-none md:rounded-full 
-                        border-b md:border border-slate-200 dark:border-slate-800 
-                        bg-white/30 dark:bg-slate-900/30 backdrop-blur-2xl shadow-2xl md:shadow-[0_8px_32px_0_rgba(0,0,0,0.1)] transition-all duration-500">
+                        border-b md:border border-slate-200/50 dark:border-white/10 
+                        bg-white/40 dark:bg-studio-obsidian/40 backdrop-blur-2xl shadow-2xl transition-all duration-500">
           
           {/* Logo */}
           <Link to="/" className="flex items-center group" aria-label="Ir al inicio">
             <img 
               src="/logo/logoalt.png" 
               alt="Studio Creativo Logo" 
-              width="150"
-              height="40"
+              width="140"
+              height="36"
               fetchPriority="high"
               loading="eager"
               decoding="sync"
@@ -51,10 +51,10 @@ export const Navbar: React.FC = () => {
               <div className="flex items-center gap-3 md:gap-4 text-slate-600 dark:text-slate-400">
                  <button 
                     onClick={toggleLanguage}
-                    className="text-[10px] font-black uppercase flex items-center gap-1.5 hover:text-primary transition-colors border-r border-slate-200 dark:border-slate-800 pr-3 md:pr-4"
+                    className="text-[10px] font-black uppercase flex items-center gap-1.5 hover:text-primary transition-colors border-r border-slate-200 dark:border-white/10 pr-3 md:pr-4"
                     aria-label={`Cambiar idioma. Actual: ${i18n.language.toUpperCase()}`}
                   >
-                    <Globe size={14} className="text-primary fill-primary/10" aria-hidden="true" />
+                    <Globe size={14} className="text-primary" aria-hidden="true" />
                     {i18n.language.toUpperCase()}
                   </button>
                   <button 

@@ -1,69 +1,55 @@
 {
-  "translation": {
-    "nav": {
-      "home": "Inicio",
-      "services": "Servicios",
-      "about": "Nosotros",
-      "contact": "Contacto",
-      "configurator": "Cotizar"
-    },
-    "hero": {
-      "title_1": "Elevamos",
-      "title_2": "Experiencias",
-      "title_3": "Digitales",
-      "subtitle": "Diseño y estrategia de alto nivel para marcas que buscan destacar en un entorno competitivo.",
-      "cta": "Empezar Proyecto",
-      "explore": "Ver Servicios",
-      "showreel": "Showreel 2026",
-      "projects_count": "+500 Proyectos Seleccionados"
-    },
-    "services": {
-      "badge": "Especialidades",
-      "title": "Soluciones que transforman negocios locales",
-      "desc": "En México, digitalizar tu comercio con Studio Creativo es la clave del crecimiento.",
-      "landing_name": "Landing Page Pro",
-      "landing_desc": "Una página de aterrizaje optimizada para captar leads y generar ventas rápidas.",
-      "web_complete_name": "Web Completa",
-      "web_complete_desc": "Sitio web multi-página con SEO avanzado y diseño premium responsivo.",
-      "custom_system_name": "Sistema a Medida",
-      "custom_system_desc": "Desarrollo de software específico para las necesidades únicas de tu negocio.",
-      "marketing": "Marketing Digital",
-      "marketing_desc": "Campañas estratégicas que generan ventas reales.",
-      "photography": "Fotografía Profesional",
-      "photography_desc": "Fotos de producto que enamoran a tus clientes.",
-      "web": "Diseño Web",
-      "web_desc": "Páginas rápidas y optimizadas para Google.",
-      "video": "Edición de Video",
-      "video_desc": "Videos que cuentan la historia de tu negocio.",
-      "content": "Creación de Contenido",
-      "content_desc": "Contenido de valor para destacar en redes.",
-      "social": "Gestión de Redes Sociales",
-      "social_desc": "Administración profesional de tu comunidad."
-    },
-    "configurator": {
-      "badge": "Cotizador Inteligente",
-      "title": "Arma tu Paquete Ideal",
-      "subtitle": "Selecciona los servicios que necesitas y Studio Creativo calculará tu presupuesto al instante.",
-      "discount_label": "Descuento Mixto",
-      "total_label": "Inversión Total",
-      "cta_pdf": "Descargar Cotización PDF",
-      "generating": "Generando...",
-      "fill_form_hint": "Llena el formulario para obtener el PDF",
-      "request_discovery": "Solicitar Sesión"
-    },
-    "admin": {
-      "login_title": "Acceso Administrativo",
-      "login_subtitle": "Inicia sesión para gestionar Studio Creativo",
-      "email": "Correo Electrónico",
-      "password": "Contraseña",
-      "sign_in": "Entrar",
-      "thank_you": "¡Gracias!",
-      "request_received": "Tu solicitud ha sido recibida. Nos contactaremos pronto."
-    },
-    "footer": {
-      "description": "Studio Creativo impulsa el éxito digital de los comercios locales en México con diseño y estrategia de nivel mundial.",
-      "rights": "© 2026 STUDIO CREATIVO. TODOS LOS DERECHOS RESERVADOS.",
-      "follow": "Síguenos"
-    }
+  "nav": {
+    "services": "Expertise",
+    "about": "Nosotros",
+    "configurator": "Cotizar Proyecto",
+    "home": "Inicio"
+  },
+  "hero": {
+    "title_1": "Creamos",
+    "title_2": "Marcas que",
+    "title_3": "Dominan.",
+    "subtitle": "No somos una agencia más. Somos tu partner estratégico para convertir clics en clientes y visiones en realidades digitales de alto impacto.",
+    "cta": "Empezar ahora",
+    "showreel": "Showreel 2026"
+  },
+  "services": {
+    "badge": "Nuestro Expertise",
+    "title": "Soluciones que escalan",
+    "desc": "Desde el primer trazo de diseño hasta la última línea de código, nos enfocamos en el retorno de tu inversión.",
+    "marketing": "Marketing de Alto Nivel",
+    "marketing_desc": "Estrategias que no solo buscan likes, sino ventas reales y posicionamiento de mercado.",
+    "photography": "Producción Visual",
+    "photography_desc": "Fotografía y contenido que captura la esencia de tu producto y detiene el scroll.",
+    "web": "Arquitectura Web",
+    "web_desc": "Sitios rápidos, seguros y diseñados para convertir cada visita en una oportunidad.",
+    "video": "Storytelling en Video",
+    "video_desc": "Contenido audiovisual que cuenta la historia de tu marca de forma cinematográfica.",
+    "content": "Estrategia de Contenido",
+    "content_desc": "Narrativas potentes que construyen autoridad y lealtad con tu audiencia.",
+    "social": "Paid Media & Social",
+    "social_desc": "Pauta inteligente y gestión de comunidades enfocada en el crecimiento orgánico y pagado."
+  },
+  "why": {
+    "title": "¿Por qué confiar en nosotros?",
+    "subtitle": "Studio Creativo",
+    "desc": "Odiamos lo genérico tanto como tú. Nuestra metodología mezcla la precisión técnica con la locura creativa para asegurar que tu marca no solo esté presente, sino que destaque.",
+    "reason1_title": "Visión Estratégica",
+    "reason1_desc": "Cada píxel tiene un propósito. No diseñamos por capricho, diseñamos para vender.",
+    "reason2_title": "Cero Slop",
+    "reason2_desc": "Contenido artesanal hecho por humanos, para humanos. Sin atajos de IA mediocres.",
+    "reason3_title": "Resultados Tangibles",
+    "reason3_desc": "Reportes claros. Sin métricas de vanidad, solo crecimiento real de tu negocio.",
+    "reason4_title": "Soporte Boutique",
+    "reason4_desc": "Atención personalizada. Tu proyecto es nuestra prioridad, no un número más.",
+    "check1_title": "Estrategias a Medida",
+    "check1_desc": "Tu negocio es único, tu estrategia también debería serlo.",
+    "check2_title": "Transparencia Total",
+    "check2_desc": "Sabrás exactamente dónde se invierte cada peso de tu presupuesto."
+  },
+  "footer": {
+    "description": "Transformando el panorama digital en México con creatividad audaz y tecnología de punta.",
+    "follow": "Síguenos",
+    "rights": "© 2026 Studio Creativo. Todos los derechos reservados."
   }
 }
