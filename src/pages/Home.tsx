@@ -38,7 +38,7 @@ const Home: React.FC = () => {
       />
       <Navbar />
 
-      <main className="flex flex-col">
+      <main id="main-content" className="flex flex-col">
         {/* Hero Section */}
         <section className="relative w-full min-h-screen md:min-h-[100dvh] flex flex-col items-center justify-center overflow-hidden pt-28 pb-12 bg-transparent">
           
@@ -54,14 +54,16 @@ const Home: React.FC = () => {
             >
               {/* Título con Animación de Revelación */}
               <div className="space-y-2">
+                <h1 className="sr-only">{t('hero.title_1')} {t('hero.title_2')} {t('hero.title_3')}</h1>
                 {[t('hero.title_1'), t('hero.title_2'), t('hero.title_3')].map((line, index) => (
                   <div key={index} className="overflow-hidden">
-                    <motion.h1 
+                    <motion.div 
                       variants={revealVariants}
                       className="text-slate-900 dark:text-white text-4xl md:text-6xl lg:text-7xl font-black leading-none tracking-tighter uppercase italic py-1"
+                      aria-hidden="true"
                     >
                       {line}
-                    </motion.h1>
+                    </motion.div>
                   </div>
                 ))}
               </div>
@@ -175,7 +177,15 @@ const Home: React.FC = () => {
       <footer className="bg-slate-900 dark:bg-slate-950 px-6 lg:px-20 py-20 relative z-40 text-white font-sans border-t border-white/5 transition-colors">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-16 md:gap-24">
           <div className="flex flex-col gap-6">
-            <img src="/logo/logoalt.png" alt="Studio Creativo" className="h-8 w-auto brightness-0 invert object-contain" />
+            <img 
+              src="/logo/logoalt.png" 
+              alt="Studio Creativo" 
+              width="150" 
+              height="32" 
+              loading="lazy" 
+              decoding="async"
+              className="h-8 w-auto brightness-0 invert object-contain" 
+            />
             <p className="text-slate-400 text-sm leading-relaxed font-medium">
               {t('footer.description')}
             </p>

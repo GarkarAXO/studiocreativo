@@ -19,17 +19,22 @@ export const Navbar: React.FC = () => {
     <>
       {/* --- NAVBAR SUPERIOR --- */}
       <div className="fixed top-0 md:top-5 left-0 w-full z-[100] px-0 md:px-10 pointer-events-none font-sans">
-        <nav className="max-w-4xl mx-auto flex items-center justify-between pointer-events-auto 
+        <nav aria-label="Navegación principal" className="max-w-4xl mx-auto flex items-center justify-between pointer-events-auto 
                         h-16 md:h-20 px-6 md:px-8 
                         rounded-none md:rounded-full 
                         border-b md:border border-slate-200 dark:border-slate-800 
                         bg-white/30 dark:bg-slate-900/30 backdrop-blur-2xl shadow-2xl md:shadow-[0_8px_32px_0_rgba(0,0,0,0.1)] transition-all duration-500">
           
           {/* Logo */}
-          <Link to="/" className="flex items-center group">
+          <Link to="/" className="flex items-center group" aria-label="Ir al inicio">
             <img 
               src="/logo/logoalt.png" 
-              alt="Studio Creativo" 
+              alt="Studio Creativo Logo" 
+              width="150"
+              height="40"
+              fetchPriority="high"
+              loading="eager"
+              decoding="sync"
               className={`h-8 md:h-10 w-auto object-contain transition-all duration-300 group-hover:scale-105 ${theme === 'dark' ? 'brightness-0 invert' : ''}`}
             />
           </Link>
@@ -47,16 +52,18 @@ export const Navbar: React.FC = () => {
                  <button 
                     onClick={toggleLanguage}
                     className="text-[10px] font-black uppercase flex items-center gap-1.5 hover:text-primary transition-colors border-r border-slate-200 dark:border-slate-800 pr-3 md:pr-4"
+                    aria-label={`Cambiar idioma. Actual: ${i18n.language.toUpperCase()}`}
                   >
-                    <Globe size={14} className="text-primary fill-primary/10" />
+                    <Globe size={14} className="text-primary fill-primary/10" aria-hidden="true" />
                     {i18n.language.toUpperCase()}
                   </button>
                   <button 
                     onClick={toggleTheme}
                     className="hover:text-primary transition-colors p-1" 
-                    title="Toggle Theme"
+                    aria-label={theme === 'dark' ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
+                    title={theme === 'dark' ? "Cambiar a modo claro" : "Cambiar a modo oscuro"}
                   >
-                    {theme === 'dark' ? <Sun size={16} className="text-accent" /> : <Moon size={16} />}
+                    {theme === 'dark' ? <Sun size={16} className="text-accent" aria-hidden="true" /> : <Moon size={16} aria-hidden="true" />}
                   </button>
               </div>
               
@@ -73,13 +80,13 @@ export const Navbar: React.FC = () => {
 
       {/* --- TAB BAR INFERIOR (Solo Mobile) --- */}
       <div className="md:hidden fixed bottom-0 left-0 w-full z-[100] px-4 pb-6 pointer-events-none">
-        <nav className="max-w-xs mx-auto flex items-center justify-around pointer-events-auto 
+        <nav aria-label="Navegación móvil" className="max-w-xs mx-auto flex items-center justify-around pointer-events-auto 
                         h-16 rounded-full border border-slate-200 dark:border-slate-800 
                         bg-white/40 dark:bg-slate-900/40 backdrop-blur-3xl shadow-2xl transition-all duration-500">
           
-          <MobileNavLink to="/" icon={<Home size={20} />} label={t('nav.home')} active={isActive('/')} />
-          <MobileNavLink to="/#services" icon={<Layout size={20} />} label="Servicios" active={false} isAnchor />
-          <MobileNavLink to="/configurator" icon={<FileText size={20} />} label={t('nav.configurator')} active={isActive('/configurator')} />
+          <MobileNavLink to="/" icon={<Home size={20} aria-hidden="true" />} label={t('nav.home')} active={isActive('/')} />
+          <MobileNavLink to="/#services" icon={<Layout size={20} aria-hidden="true" />} label="Servicios" active={false} isAnchor />
+          <MobileNavLink to="/configurator" icon={<FileText size={20} aria-hidden="true" />} label={t('nav.configurator')} active={isActive('/configurator')} />
           
         </nav>
       </div>

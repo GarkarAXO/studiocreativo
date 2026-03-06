@@ -1,0 +1,15 @@
+# /robots.txt
+# Autorizado para todos los motores de búsqueda
+User-agent: *
+Allow: /
+
+# Bloqueo de rutas internas/privadas para SEO
+Disallow: /admin/
+Disallow: /api/
+Disallow: /private/
+
+# Evitar duplicados por parámetros de búsqueda si los hubiera
+Disallow: /*?
+
+# Ubicación del Mapa del Sitio
+Sitemap: https://studiocreativo.digital/sitemap.xml
