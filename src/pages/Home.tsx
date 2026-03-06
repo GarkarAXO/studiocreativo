@@ -6,6 +6,7 @@ import { BackgroundEffect } from '../components/BackgroundEffect';
 import { FloatingElements } from '../components/FloatingElements';
 import { Target, Camera, Layout, Video, Globe2, Share2, ArrowRight, Users, TrendingUp, Check, Play, Globe } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { SEO } from '../components/SEO';
 
 const Home: React.FC = () => {
   const { t } = useTranslation();
@@ -31,6 +32,10 @@ const Home: React.FC = () => {
 
   return (
     <div className="bg-white dark:bg-slate-950 text-slate-900 dark:text-slate-100 font-sans selection:bg-primary selection:text-white overflow-x-hidden transition-colors duration-500">
+      <SEO 
+        title="Agencia Digital Boutique" 
+        description="En Studio Creativo elevamos experiencias digitales con diseño y estrategia de alto nivel. Expertos en Marketing, Web y Video en México."
+      />
       <Navbar />
 
       <main className="flex flex-col">
@@ -47,6 +52,7 @@ const Home: React.FC = () => {
               animate="visible"
               className="flex flex-col items-center gap-10 w-full"
             >
+              {/* Título con Animación de Revelación */}
               <div className="space-y-2">
                 {[t('hero.title_1'), t('hero.title_2'), t('hero.title_3')].map((line, index) => (
                   <div key={index} className="overflow-hidden">
@@ -60,6 +66,7 @@ const Home: React.FC = () => {
                 ))}
               </div>
 
+              {/* Subtítulo con entrada suave */}
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -71,6 +78,7 @@ const Home: React.FC = () => {
                 </p>
               </motion.div>
 
+              {/* CTAs Centrados con precisión en Escritorio */}
               <motion.div 
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -92,6 +100,7 @@ const Home: React.FC = () => {
             </motion.div>
           </div>
 
+          {/* Scroll Indicator */}
           <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 opacity-10 dark:opacity-20">
              <div className="w-[1px] h-16 bg-gradient-to-b from-slate-900 dark:from-white to-transparent"></div>
           </div>
