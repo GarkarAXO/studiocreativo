@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Navbar } from '../components/Navbar';
 import { services, calculateTotal } from '../utils/pricing';
 import type { Service } from '../utils/pricing';
-import { Check, Send, FileText, Download, Loader2, ArrowRight } from 'lucide-react';
+import { Check, FileText, Download, Loader2, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import { QuotePDF } from '../features/quotes/QuotePDF';
