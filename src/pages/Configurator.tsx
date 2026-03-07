@@ -301,8 +301,6 @@ const Configurator: React.FC = () => {
           </section>
         </div>
       </main>
-        </div>
-      </main>
 
       <footer className="bg-slate-900 dark:bg-black py-12 px-10 text-white font-sans transition-colors">
         <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-8 text-[10px] font-black tracking-widest uppercase opacity-40">
