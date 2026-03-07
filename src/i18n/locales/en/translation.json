@@ -55,5 +55,33 @@
     "description": "Transforming the digital landscape in Mexico with bold creativity and cutting-edge technology.",
     "follow": "Follow Us",
     "rights": "© 2026 Studio Creativo. All rights reserved."
+  },
+  "configurator": {
+    "title": "Build Your",
+    "subtitle": "Custom Package",
+    "desc": "Tailor our expert services to your specific business needs. Select your options below to see a real-time investment estimate.",
+    "select_services": "Select Your Services",
+    "service_added": "Service Added",
+    "add_service": "Add to Package",
+    "summary": "Project Summary",
+    "implementation": "Implementation",
+    "discount": "Volume Discount",
+    "total_estimated": "Estimated Investment",
+    "download_pdf": "Download Quote PDF",
+    "fill_form": "Fill form to get PDF",
+    "request_discovery": "Request Strategy Session",
+    "folio": "Folio",
+    "validity": "Valid for 30 days",
+    "contact_title": "Ready to Launch?",
+    "contact_desc": "Fill out the form below and our team will get back to you within 24 hours.",
+    "thank_you": "Thank You!",
+    "form": {
+      "name": "Full Name",
+      "email": "Work Email",
+      "company": "Company Name",
+      "details": "Project Details",
+      "details_placeholder": "Tell us about your goals...",
+      "submit": "Send Package Request"
+    }
   }
 }

@@ -55,5 +55,33 @@
     "description": "Transformando el panorama digital en México con creatividad audaz y tecnología de punta.",
     "follow": "Síguenos",
     "rights": "© 2026 Studio Creativo. Todos los derechos reservados."
+  },
+  "configurator": {
+    "title": "Crea tu",
+    "subtitle": "Paquete a Medida",
+    "desc": "Adapta nuestros servicios expertos a las necesidades específicas de tu negocio. Selecciona tus opciones para ver un estimado en tiempo real.",
+    "select_services": "Selecciona tus Servicios",
+    "service_added": "Servicio Añadido",
+    "add_service": "Añadir al Paquete",
+    "summary": "Resumen del Proyecto",
+    "implementation": "Implementación",
+    "discount": "Descuento por Volumen",
+    "total_estimated": "Inversión Estimada",
+    "download_pdf": "Descargar PDF de Cotización",
+    "fill_form": "Completa el formulario para el PDF",
+    "request_discovery": "Solicitar Sesión de Estrategia",
+    "folio": "Folio",
+    "validity": "Válido por 30 días",
+    "contact_title": "¿Listo para Empezar?",
+    "contact_desc": "Completa el formulario y nuestro equipo te contactará en menos de 24 horas.",
+    "thank_you": "¡Gracias!",
+    "form": {
+      "name": "Nombre Completo",
+      "email": "Correo de Trabajo",
+      "company": "Nombre de tu Empresa",
+      "details": "Detalles del Proyecto",
+      "details_placeholder": "Cuéntanos sobre tus objetivos...",
+      "submit": "Enviar Solicitud de Paquete"
+    }
   }
 }

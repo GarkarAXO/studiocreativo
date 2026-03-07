@@ -3,13 +3,13 @@ import { useTranslation } from 'react-i18next';
 import { Navbar } from '../components/Navbar';
 import { services, calculateTotal } from '../utils/pricing';
 import type { Service } from '../utils/pricing';
-import { Check, Send, FileText, Download, Loader2 } from 'lucide-react';
+import { Check, Send, FileText, Download, Loader2, ArrowRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { PDFDownloadLink } from '@react-pdf/renderer';
 import { QuotePDF } from '../features/quotes/QuotePDF';
 
 const Configurator: React.FC = () => {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [totals, setTotals] = useState({ subtotal: 0, discount: 0, total: 0 });
   const [formData, setFormData] = useState({ fullName: '', email: '', businessName: '', details: '' });
@@ -84,10 +84,10 @@ const Configurator: React.FC = () => {
           {/* Header Section */}
           <div className="max-w-3xl mb-10 md:mb-16 pt-10">
             <h1 className="text-3xl md:text-5xl lg:text-7xl font-black tracking-tight leading-none uppercase italic mb-4 md:mb-6 dark:text-white">
-              Build Your <br /> <span className="text-primary not-italic">Custom Package</span>
+              {t('configurator.title')} <br /> <span className="text-primary not-italic">{t('configurator.subtitle')}</span>
             </h1>
             <p className="text-base md:text-xl text-slate-500 dark:text-slate-400 font-medium max-w-2xl leading-relaxed">
-              Tailor our expert services to your specific business needs. Select your options below to see a real-time investment estimate.
+              {t('configurator.desc')}
             </p>
           </div>
 
@@ -95,7 +95,7 @@ const Configurator: React.FC = () => {
             {/* Service Selection */}
             <div className="lg:col-span-2 space-y-6 md:space-y-8">
               <h2 className="text-xl md:text-2xl font-black uppercase tracking-widest border-b border-slate-200 dark:border-white/10 pb-4 italic">
-                {i18n.language === 'es' ? 'Selecciona tus Servicios' : 'Select Services'}
+                {t('configurator.select_services')}
               </h2>
               
               <div className="grid grid-cols-1 gap-4 md:gap-6">
@@ -140,7 +140,7 @@ const Configurator: React.FC = () => {
                              {isSelected && <Check size={12} strokeWidth={4} />}
                            </div>
                            <span className={`text-[10px] md:text-xs font-black uppercase tracking-widest ${isSelected ? 'text-primary' : 'text-slate-400'}`}>
-                              {isSelected ? 'Service Added' : 'Add to Package'}
+                              {isSelected ? t('configurator.service_added') : t('configurator.add_service')}
                            </span>
                         </div>
                       </div>
@@ -150,18 +150,18 @@ const Configurator: React.FC = () => {
               </div>
             </div>
 
-            {/* Sticky Sidebar */}
+            {/* Sticky Sidebar - Project Summary Rediseñado */}
             <div className="lg:col-span-1">
               <div className="sticky top-24 md:top-32 space-y-6">
-                <div className="bg-slate-900 dark:bg-black text-white p-6 md:p-10 rounded-[2rem] md:rounded-[3rem] shadow-2xl shadow-primary/20 relative overflow-hidden border border-white/5">
+                <div className="bg-[#0E0E55] dark:bg-black text-white p-6 md:p-10 rounded-[2rem] md:rounded-[3rem] shadow-2xl shadow-primary/20 relative overflow-hidden border border-white/5">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-primary opacity-20 blur-3xl"></div>
                   
                   <div className="relative z-10 space-y-8 md:space-y-10">
-                    <h3 className="text-xl md:text-2xl font-black uppercase italic tracking-tighter">Project Summary</h3>
+                    <h3 className="text-xl md:text-2xl font-black uppercase italic tracking-tighter">{t('configurator.summary')}</h3>
                     
                     <div className="space-y-4">
                       <div className="flex justify-between items-center text-[10px] md:text-xs font-black uppercase tracking-widest opacity-40 text-slate-300">
-                        <span>Implementation</span>
+                        <span>{t('configurator.implementation')}</span>
                         <span>${totals.subtotal.toLocaleString('es-MX')}</span>
                       </div>
                       <AnimatePresence>
@@ -172,15 +172,15 @@ const Configurator: React.FC = () => {
                             exit={{ opacity: 0, x: 20 }}
                             className="flex justify-between items-center text-primary font-black uppercase italic tracking-tighter text-base md:text-lg"
                           >
-                            <span>Mixed Discount</span>
+                            <span>{t('configurator.discount')}</span>
                             <span>-${totals.discount.toLocaleString('es-MX')}</span>
                           </motion.div>
                         )}
                       </AnimatePresence>
                       <div className="h-px bg-white/10"></div>
                       <div className="pt-2">
-                        <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400 block mb-2">Total Estimated</span>
-                        <h4 className="text-3xl md:text-5xl font-black tracking-tighter italic text-primary leading-none">
+                        <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400 block mb-2">{t('configurator.total_estimated')}</span>
+                        <h4 className="text-3xl md:text-5xl font-black tracking-tighter italic text-white leading-none">
                           ${totals.total.toLocaleString('es-MX')}
                           <span className="text-[10px] md:text-xs ml-2 opacity-30 text-white">MXN</span>
                         </h4>
@@ -204,30 +204,30 @@ const Configurator: React.FC = () => {
                         >
                           {({ loading }) => (
                             loading ? (
-                              <><Loader2 className="animate-spin" size={16} /> Generating...</>
+                              <><Loader2 className="animate-spin" size={16} /> ...</>
                             ) : (
-                              <><Download size={16} /> Download PDF</>
+                              <><Download size={16} /> {t('configurator.download_pdf')}</>
                             )
                           )}
                         </PDFDownloadLink>
                       ) : (
                         <button 
                           className="flex items-center justify-center w-full h-14 md:h-16 bg-slate-800 text-slate-500 rounded-xl md:rounded-2xl font-black uppercase tracking-widest text-[9px] md:text-[10px] cursor-not-allowed gap-3"
-                          onClick={() => alert('Please fill in your name, email and select at least 1 service.')}
+                          onClick={() => alert(t('configurator.fill_form'))}
                         >
                           <FileText size={16} />
-                          Fill Form to Get PDF
+                          {t('configurator.fill_form')}
                         </button>
                       )}
                       
                       <a href="#contact" className="flex items-center justify-center w-full h-14 md:h-16 border-2 border-white/10 text-white rounded-xl md:rounded-2xl font-black uppercase tracking-widest text-[10px] md:text-xs transition-all hover:bg-white hover:text-slate-900 text-center">
-                        Request Discovery
+                        {t('configurator.request_discovery')}
                       </a>
                     </div>
                     
                     <div className="p-3 md:p-4 bg-primary/10 rounded-xl md:rounded-2xl border border-primary/20">
                       <p className="text-[9px] md:text-[10px] font-bold text-center opacity-60 leading-relaxed uppercase tracking-widest text-primary">
-                        Folio: {folio} | valid for 30 days.
+                        {t('configurator.folio')}: {folio} | {t('configurator.validity')}
                       </p>
                     </div>
                   </div>
@@ -241,12 +241,12 @@ const Configurator: React.FC = () => {
             <div className="max-w-2xl mx-auto">
                <div className="text-center mb-10 md:mb-16 space-y-4">
                   <h2 className="text-3xl md:text-6xl font-black italic uppercase tracking-tighter leading-none dark:text-white">
-                    {submitted ? 'Thank You!' : 'Ready to Launch?'}
+                    {submitted ? t('configurator.thank_you') : t('configurator.contact_title')}
                   </h2>
                   <p className="text-sm md:text-base text-slate-500 dark:text-slate-400 font-medium">
                     {submitted 
-                      ? 'Your request has been received. Our team will get back to you within 24 hours.' 
-                      : 'Fill out the form below and our team will get back to you within 24 hours.'}
+                      ? t('configurator.thank_you_desc') || 'Your request has been received.' 
+                      : t('configurator.contact_desc')}
                   </p>
                </div>
                
@@ -254,14 +254,14 @@ const Configurator: React.FC = () => {
                  <form onSubmit={handleSubmit} className="bg-white dark:bg-slate-900 p-6 md:p-12 rounded-[2rem] md:rounded-[3.5rem] shadow-2xl shadow-black/5 border border-slate-100 dark:border-white/5 space-y-6 md:space-y-8">
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                       <FormInput 
-                        label="Full Name" 
+                        label={t('configurator.form.name')} 
                         name="fullName"
                         placeholder="John Doe" 
                         value={formData.fullName}
                         onChange={handleInputChange}
                       />
                       <FormInput 
-                        label="Work Email" 
+                        label={t('configurator.form.email')} 
                         name="email"
                         placeholder="john@company.com" 
                         type="email" 
@@ -270,20 +270,20 @@ const Configurator: React.FC = () => {
                       />
                     </div>
                     <FormInput 
-                      label="Company Name" 
+                      label={t('configurator.form.company')} 
                       name="businessName"
                       placeholder="Acme Inc" 
                       value={formData.businessName}
                       onChange={handleInputChange}
                     />
                     <div className="space-y-3">
-                      <label className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-slate-400 ml-4">Project Details</label>
+                      <label className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-slate-400 ml-4">{t('configurator.form.details')}</label>
                       <textarea 
                         name="details"
                         value={formData.details}
                         onChange={handleInputChange}
                         className="w-full bg-slate-50 dark:bg-slate-800 border-2 border-slate-50 dark:border-white/5 rounded-2xl md:rounded-[2rem] px-6 md:px-8 py-4 md:py-6 text-sm font-bold focus:bg-white dark:focus:bg-slate-700 focus:border-primary outline-none transition-all resize-none text-slate-900 dark:text-white" 
-                        placeholder="Tell us about your goals..." 
+                        placeholder={t('configurator.form.details_placeholder')} 
                         rows={4}
                       />
                     </div>
@@ -292,8 +292,8 @@ const Configurator: React.FC = () => {
                       disabled={isSubmitting || !isFormValid}
                       className="w-full bg-primary py-5 md:py-6 rounded-xl md:rounded-2xl text-white font-black uppercase tracking-widest text-xs md:text-sm transition-all hover:shadow-2xl hover:shadow-primary/30 active:scale-95 flex items-center justify-center gap-4 shadow-lg shadow-primary/20 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
-                       {isSubmitting ? <Loader2 className="animate-spin" size={18} /> : 'Send Package Request'}
-                       {!isSubmitting && <Send size={18} />}
+                       {isSubmitting ? <Loader2 className="animate-spin" size={18} /> : t('configurator.form.submit')}
+                       {!isSubmitting && <ArrowRight size={18} />}
                     </button>
                  </form>
                )}

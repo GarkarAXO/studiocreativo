@@ -1,75 +1,60 @@
 export interface Service {
   id: string;
-  nameKey: string; // Usaremos llaves de traducción
-  basePrice: number;
+  nameKey: string;
   descriptionKey: string;
-  image?: string;
+  basePrice: number;
 }
 
 export const services: Service[] = [
   {
-    id: 'landing',
-    nameKey: 'services.landing_name',
-    basePrice: 4500,
-    descriptionKey: 'services.landing_desc',
-  },
-  {
-    id: 'web_complete',
-    nameKey: 'services.web_complete_name',
-    basePrice: 12000,
-    descriptionKey: 'services.web_complete_desc',
-  },
-  {
-    id: 'custom_system',
-    nameKey: 'services.custom_system_name',
-    basePrice: 25000,
-    descriptionKey: 'services.custom_system_desc',
-  },
-  {
     id: 'marketing',
     nameKey: 'services.marketing',
-    basePrice: 5000,
     descriptionKey: 'services.marketing_desc',
+    basePrice: 8500
+  },
+  {
+    id: 'web',
+    nameKey: 'services.web',
+    descriptionKey: 'services.web_desc',
+    basePrice: 12000
   },
   {
     id: 'photography',
     nameKey: 'services.photography',
-    basePrice: 3500,
     descriptionKey: 'services.photography_desc',
+    basePrice: 5500
   },
   {
     id: 'video',
     nameKey: 'services.video',
-    basePrice: 4500,
     descriptionKey: 'services.video_desc',
+    basePrice: 7500
   },
   {
     id: 'content',
     nameKey: 'services.content',
-    basePrice: 4000,
     descriptionKey: 'services.content_desc',
+    basePrice: 4500
   },
   {
     id: 'social',
     nameKey: 'services.social',
-    basePrice: 6000,
     descriptionKey: 'services.social_desc',
-  },
+    basePrice: 6000
+  }
 ];
 
-export const calculateTotal = (selectedServiceIds: string[]): { subtotal: number; discount: number; total: number } => {
-  const selectedServices = services.filter((s) => selectedServiceIds.includes(s.id));
-  const subtotal = selectedServices.reduce((acc, s) => acc + s.basePrice, 0);
+export const calculateTotal = (selectedIds: string[]) => {
+  const subtotal = services
+    .filter(s => selectedIds.includes(s.id))
+    .reduce((acc, s) => acc + s.basePrice, 0);
   
-  let discountPercentage = 0;
-  if (selectedServiceIds.length >= 5) {
-    discountPercentage = 0.20;
-  } else if (selectedServiceIds.length >= 3) {
-    discountPercentage = 0.10;
-  }
-
-  const discount = subtotal * discountPercentage;
-  const total = subtotal - discount;
-
-  return { subtotal, discount, total };
+  // Descuento por volumen: 10% si eligen más de 3 servicios
+  const discount = selectedIds.length >= 3 ? subtotal * 0.10 : 0;
+  
+  return {
+    subtotal,
+    discount,
+    total: subtotal - discount
+  };
 };
