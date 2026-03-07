@@ -19,8 +19,8 @@ export const BackgroundEffect: React.FC<BackgroundEffectProps> = ({ id = "tspart
     });
   }, []);
 
-  const particlesLoaded = async (container?: Container): Promise<void> => {
-    // console.log(container);
+  const particlesLoaded = async (): Promise<void> => {
+    // console.log("Particles loaded");
   };
 
   const options: ISourceOptions = {
@@ -70,7 +70,6 @@ export const BackgroundEffect: React.FC<BackgroundEffectProps> = ({ id = "tspart
         animation: {
           enable: true,
           speed: 2,
-          minimumValue: 0.1,
           sync: false,
         },
         value: { min: 0.1, max: 0.9 },

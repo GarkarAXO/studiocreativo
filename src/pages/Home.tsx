@@ -9,29 +9,7 @@ import { Link } from 'react-router-dom';
 import { SEO } from '../components/SEO';
 
 const Home: React.FC = () => {
-  const { t, i18n } = useTranslation();
-  const ctaRef = useRef(null);
-
-  // Lógica de Scroll con Suavizado (Spring)
-  const { scrollYProgress: rawProgress } = useScroll({
-    target: ctaRef,
-    offset: ["start end", "end start"]
-  });
-
-  const ctaProgress = useSpring(rawProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
-
-  const topY = useTransform(ctaProgress, [0.3, 0.6], ["0%", "-100%"]);
-  const bottomY = useTransform(ctaProgress, [0.3, 0.6], ["0%", "100%"]);
-  
-  // Nuevo: El azul bajando desde arriba
-  const blueBackgroundY = useTransform(ctaProgress, [0.2, 0.5], ["-100%", "0%"]);
-  
-  const ctaOpacity = useTransform(ctaProgress, [0.5, 0.7], [0, 1]);
-  const ctaScale = useTransform(ctaProgress, [0.5, 0.7], [0.9, 1]);
+  const { t } = useTranslation();
 
   const containerVariants = {
     visible: {
