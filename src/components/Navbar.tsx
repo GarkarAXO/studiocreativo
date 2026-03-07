@@ -22,8 +22,8 @@ export const Navbar: React.FC = () => {
         <nav aria-label="Navegación principal" className="max-w-4xl mx-auto flex items-center justify-between pointer-events-auto 
                         h-16 md:h-20 px-6 md:px-8 
                         rounded-none md:rounded-full 
-                        border-b md:border border-slate-200/50 dark:border-white/10 
-                        bg-white/40 dark:bg-studio-obsidian/40 backdrop-blur-2xl shadow-2xl transition-all duration-500">
+                        border-b md:border border-slate-200/30 dark:border-white/5 
+                        bg-white/20 dark:bg-studio-obsidian/20 backdrop-blur-xl shadow-lg shadow-black/5 transition-all duration-500">
           
           {/* Logo */}
           <Link to="/" className="flex items-center group" aria-label="Ir al inicio">

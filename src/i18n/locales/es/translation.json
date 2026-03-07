@@ -28,7 +28,8 @@
     "content": "Estrategia de Contenido",
     "content_desc": "Narrativas potentes que construyen autoridad y lealtad con tu audiencia.",
     "social": "Paid Media & Social",
-    "social_desc": "Pauta inteligente y gestión de comunidades enfocada en el crecimiento orgánico y pagado."
+    "social_desc": "Pauta inteligente y gestión de comunidades enfocada en el crecimiento orgánico y pagado.",
+    "learn_more": "Saber más"
   },
   "why": {
     "title": "¿Por qué confiar en nosotros?",
@@ -48,6 +49,9 @@
     "check2_desc": "Sabrás exactamente dónde se invierte cada peso de tu presupuesto."
   },
   "footer": {
+    "cta_title": "¿Listo para elevar tu marca",
+    "cta_together": "juntos?",
+    "cta_desc": "Únete a las empresas que ya están dominando el entorno digital con nosotros.",
     "description": "Transformando el panorama digital en México con creatividad audaz y tecnología de punta.",
     "follow": "Síguenos",
     "rights": "© 2026 Studio Creativo. Todos los derechos reservados."

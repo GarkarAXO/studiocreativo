@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion } from 'framer-motion';
+import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
 import { Navbar } from '../components/Navbar';
 import { BackgroundEffect } from '../components/BackgroundEffect';
 import { FloatingElements } from '../components/FloatingElements';
@@ -10,17 +10,28 @@ import { SEO } from '../components/SEO';
 
 const Home: React.FC = () => {
   const { t, i18n } = useTranslation();
+  const ctaRef = useRef(null);
 
-  const revealVariants = {
-    hidden: { y: "100%" },
-    visible: { 
-      y: 0,
-      transition: { 
-        duration: 0.8, 
-        ease: [0.16, 1, 0.3, 1] as any
-      }
-    }
-  };
+  // Lógica de Scroll con Suavizado (Spring)
+  const { scrollYProgress: rawProgress } = useScroll({
+    target: ctaRef,
+    offset: ["start end", "end start"]
+  });
+
+  const ctaProgress = useSpring(rawProgress, {
+    stiffness: 100,
+    damping: 30,
+    restDelta: 0.001
+  });
+
+  const topY = useTransform(ctaProgress, [0.3, 0.6], ["0%", "-100%"]);
+  const bottomY = useTransform(ctaProgress, [0.3, 0.6], ["0%", "100%"]);
+  
+  // Nuevo: El azul bajando desde arriba
+  const blueBackgroundY = useTransform(ctaProgress, [0.2, 0.5], ["-100%", "0%"]);
+  
+  const ctaOpacity = useTransform(ctaProgress, [0.5, 0.7], [0, 1]);
+  const ctaScale = useTransform(ctaProgress, [0.5, 0.7], [0.9, 1]);
 
   const containerVariants = {
     visible: {
@@ -39,93 +50,137 @@ const Home: React.FC = () => {
       <Navbar />
 
       <main id="main-content" className="flex flex-col">
-        {/* Hero Section */}
-        <section className="relative w-full min-h-screen md:min-h-[100dvh] flex flex-col items-center justify-center overflow-hidden pt-28 pb-12 bg-transparent">
+        {/* Unificado: Hero + Services con Fondo Continuo */}
+        <div className="relative isolate">
+          {/* Fondo Continuo */}
+          <div className="absolute inset-0 -z-10 bg-white dark:bg-background-dark">
+             <div className="absolute inset-0 bg-[linear-gradient(to_right,white_10%,#f0f7ff_40%,#0E0E55_100%)] dark:bg-[linear-gradient(to_right,#05070a_10%,#0a0d14_40%,#0E0E55_100%)]"></div>
+          </div>
           
-          <BackgroundEffect />
-          <FloatingElements />
+          {/* Estrellas Continuas en Mitad Derecha */}
+          <div className="absolute top-0 right-0 w-full lg:w-1/2 h-full -z-10 pointer-events-none overflow-hidden">
+            <BackgroundEffect id="hero-particles" />
+          </div>
 
-          <div className="relative z-20 max-w-5xl mx-auto px-6 text-left w-full">
-            <motion.div
-              variants={containerVariants}
-              initial="hidden"
-              animate="visible"
-              className="flex flex-col items-start gap-10 w-full"
-            >
-              {/* Título con Animación de Revelación */}
-              <div className="space-y-2">
-                <h1 className="sr-only">{t('hero.title_1')} {t('hero.title_2')} {t('hero.title_3')}</h1>
-                {[t('hero.title_1'), t('hero.title_2'), t('hero.title_3')].map((line, index) => (
-                  <div key={index} className="overflow-hidden">
+          {/* Hero Section */}
+          <section className="relative w-full min-h-screen md:min-h-[100dvh] flex flex-col items-center justify-center overflow-hidden pt-28 pb-12 bg-transparent">
+            <FloatingElements />
+
+            <div className="relative z-20 max-w-5xl mx-auto px-6 text-left w-full">
+              <motion.div
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ margin: "-100px" }}
+                className="flex flex-col items-start gap-10 w-full"
+              >
+                {/* Título - Negro Profundo */}
+                <div className="space-y-2">
+                  <h1 className="sr-only">{t('hero.title_1')} {t('hero.title_2')} {t('hero.title_3')}</h1>
+                  {[t('hero.title_1'), t('hero.title_2'), t('hero.title_3')].map((line, index) => (
                     <motion.div 
-                      variants={revealVariants}
-                      className="text-slate-900 dark:text-white text-4xl md:text-7xl lg:text-8xl font-black leading-none tracking-tighter uppercase italic py-1"
+                      key={index}
+                      variants={{
+                        hidden: { opacity: 0, y: 20 },
+                        visible: { opacity: 1, y: 0 }
+                      }}
+                      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                      className="text-slate-950 dark:text-white text-4xl md:text-6xl lg:text-7xl font-black leading-[1.1] tracking-tighter uppercase italic py-1"
                       aria-hidden="true"
                     >
                       {line}
                     </motion.div>
-                  </div>
-                ))}
-              </div>
+                  ))}
+                </div>
 
-              {/* Subtítulo con entrada suave */}
-              <motion.div 
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.5, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                className="overflow-hidden"
-              >
-                <p className="text-slate-600 dark:text-slate-400 text-lg md:text-2xl font-medium leading-relaxed max-w-2xl">
-                  {t('hero.subtitle')}
-                </p>
-              </motion.div>
+                {/* Subtítulo - Negro Profundo */}
+                <motion.div 
+                  variants={{
+                    hidden: { opacity: 0, x: -20 },
+                    visible: { opacity: 1, x: 0 }
+                  }}
+                  transition={{ delay: 0.5, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                  className="overflow-hidden"
+                >
+                  <p className="text-slate-900 dark:text-slate-300 text-lg md:text-xl font-medium leading-relaxed max-w-xl">
+                    {t('hero.subtitle')}
+                  </p>
+                </motion.div>
 
-              {/* CTA Único */}
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.7, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                className="mt-4"
-              >
-                <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
-                  <Link to="/configurator" className="flex min-w-[240px] items-center justify-center rounded-full h-16 px-12 bg-primary text-white text-xs font-black uppercase tracking-widest transition-all shadow-xl shadow-primary/20 hover:shadow-primary/30 relative z-40 text-center">
-                    {t('hero.cta')}
-                  </Link>
+                {/* CTA Único */}
+                <motion.div 
+                  variants={{
+                    hidden: { opacity: 0, y: 20 },
+                    visible: { opacity: 1, y: 0 }
+                  }}
+                  transition={{ delay: 0.7, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                  className="mt-4"
+                >
+                  <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
+                    <Link to="/configurator" className="flex min-w-[240px] items-center justify-center rounded-full h-16 px-12 bg-primary text-white text-xs font-black uppercase tracking-widest transition-all shadow-xl shadow-primary/20 hover:shadow-primary/30 relative z-40 text-center">
+                      {t('hero.cta')}
+                    </Link>
+                  </motion.div>
                 </motion.div>
               </motion.div>
-            </motion.div>
-          </div>
-
-          {/* Scroll Indicator */}
-          <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 opacity-10 dark:opacity-20">
-             <div className="w-[1px] h-16 bg-gradient-to-b from-slate-900 dark:from-white to-transparent"></div>
-          </div>
-        </section>
-
-        {/* Services Section */}
-        <section className="px-6 lg:px-20 py-32 bg-white dark:bg-slate-900/30 border-y border-slate-100 dark:border-white/5 relative z-40" id="services">
-          <div className="max-w-[1200px] mx-auto">
-            <div className="flex flex-col gap-6 mb-20 items-center text-center">
-              <span className="text-primary font-black uppercase tracking-[0.4em] text-[10px]">{t('services.badge')}</span>
-              <h2 className="text-slate-900 dark:text-white text-4xl lg:text-5xl font-black tracking-tighter italic uppercase leading-none">{t('services.title')}</h2>
-              <p className="text-slate-500 dark:text-slate-400 text-lg max-w-[600px] font-medium leading-relaxed">{t('services.desc')}</p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              <ServiceBox icon={<Target />} title={t('services.marketing')} desc={t('services.marketing_desc')} />
-              <ServiceBox icon={<Camera />} title={t('services.photography')} desc={t('services.photography_desc')} />
-              <ServiceBox icon={<Layout />} title={t('services.web')} desc={t('services.web_desc')} />
-              <ServiceBox icon={<Video />} title={t('services.video')} desc={t('services.video_desc')} />
-              <ServiceBox icon={<Globe2 />} title={t('services.content')} desc={t('services.content_desc')} />
-              <ServiceBox icon={<Share2 />} title={t('services.social')} desc={t('services.social_desc')} />
+            {/* Scroll Indicator */}
+            <div className="absolute bottom-10 left-1/2 -translate-x-1/2 z-20 opacity-10 dark:opacity-20">
+               <div className="w-[1px] h-16 bg-gradient-to-b from-slate-900 dark:from-white to-transparent"></div>
             </div>
-          </div>
-        </section>
+          </section>
 
-        {/* Why Choose Us Section */}
-        <section className="px-6 lg:px-20 py-32 bg-slate-50 dark:bg-background-dark relative z-40 transition-colors" id="why-us">
-          <div className="max-w-7xl mx-auto">
-            <div className="grid lg:grid-cols-2 gap-16 lg:gap-32 items-center">
+          {/* Services Section - Alto Completo */}
+          <section className="px-6 lg:px-20 py-20 min-h-screen flex items-center justify-center relative z-40" id="services">
+            <div className="max-w-7xl mx-auto w-full">
+              <motion.div 
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ margin: "-100px" }}
+                transition={{ duration: 0.8 }}
+                className="flex flex-col gap-6 mb-16 items-center text-center"
+              >
+                <span className="text-primary font-black uppercase tracking-[0.4em] text-[10px] bg-primary/5 px-4 py-2 rounded-full border border-primary/10">{t('services.badge')}</span>
+                <h2 className="text-slate-900 dark:text-white text-4xl lg:text-6xl font-black tracking-tighter italic uppercase leading-none">{t('services.title')}</h2>
+                <p className="text-slate-700 dark:text-slate-300 text-lg max-w-[600px] font-medium leading-relaxed">{t('services.desc')}</p>
+              </motion.div>
+
+              <motion.div 
+                variants={{
+                  hidden: { opacity: 0, y: 20 },
+                  show: {
+                    opacity: 1,
+                    y: 0,
+                    transition: {
+                      staggerChildren: 0.15
+                    }
+                  }
+                }}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ margin: "-50px" }}
+                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+              >
+                <ServiceBox icon={<Target />} title={t('services.marketing')} desc={t('services.marketing_desc')} />
+                <ServiceBox icon={<Camera />} title={t('services.photography')} desc={t('services.photography_desc')} />
+                <ServiceBox icon={<Layout />} title={t('services.web')} desc={t('services.web_desc')} />
+                <ServiceBox icon={<Video />} title={t('services.video')} desc={t('services.video_desc')} />
+                <ServiceBox icon={<Globe2 />} title={t('services.content')} desc={t('services.content_desc')} />
+                <ServiceBox icon={<Share2 />} title={t('services.social')} desc={t('services.social_desc')} />
+              </motion.div>
+            </div>
+          </section>
+        </div>
+
+        {/* Why Choose Us Section - Alto Completo / Ancho Equilibrado */}
+        <section className="px-6 lg:px-20 py-20 bg-slate-50 dark:bg-background-dark relative z-40 transition-colors w-full min-h-screen flex items-center justify-center border-y border-slate-200/50 dark:border-white/5" id="why-us">
+          {/* Líneas Divisorias de Diseño - Efecto de Luz (Glow) */}
+          <div className="absolute top-0 left-0 w-full h-[2px] bg-[linear-gradient(to_right,transparent_0%,#1a57a4_50%,transparent_100%)] shadow-[0_0_15px_rgba(26,87,164,0.5)] z-10"></div>
+          <div className="absolute bottom-0 left-0 w-full h-[2px] bg-[linear-gradient(to_right,transparent_0%,#1a57a4_50%,transparent_100%)] shadow-[0_0_15px_rgba(26,87,164,0.5)] z-10"></div>
+          
+          <div className="max-w-7xl mx-auto w-full">
+            <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
               
               {/* Contenido Izquierdo: Marca y Narrativa */}
               <div className="flex flex-col gap-12 text-left">
@@ -147,7 +202,7 @@ const Home: React.FC = () => {
                       alt="Studio Creativo" 
                       width="240"
                       height="60"
-                      className="h-12 lg:h-20 w-auto object-contain brightness-0 dark:invert"
+                      className="h-12 lg:h-16 w-auto object-contain brightness-0 dark:invert"
                     />
                   </h2>
                   <motion.p 
@@ -161,15 +216,14 @@ const Home: React.FC = () => {
                   </motion.p>
                 </div>
 
-                <div className="flex flex-col gap-8">
-                   <WhyCheck title={t('why.check1_title')} desc={t('why.check1_desc')} />
-                   <WhyCheck title={t('why.check2_title')} desc={t('why.check2_desc')} />
+                <div className="flex flex-col md:flex-row gap-8">
+                   <WhyCheck index={0} title={t('why.check1_title')} desc={t('why.check1_desc')} />
+                   <WhyCheck index={1} title={t('why.check2_title')} desc={t('why.check2_desc')} />
                 </div>
               </div>
 
               {/* Contenido Derecho: Tarjetas Asimétricas */}
               <div className="relative grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
-                {/* Decoración de fondo */}
                 <div className="absolute -inset-4 bg-primary/5 rounded-[4rem] blur-3xl -z-10"></div>
                 
                 <div className="space-y-6 lg:space-y-8">
@@ -181,37 +235,60 @@ const Home: React.FC = () => {
                   <WhyBox icon={<TrendingUp />} title={t('why.reason4_title')} desc={t('why.reason4_desc')} />
                 </div>
               </div>
-
             </div>
           </div>
         </section>
 
-        {/* CTA Section */}
-        <section className="px-6 lg:px-20 py-40 relative z-40 bg-background-light dark:bg-background-dark transition-colors">
-          <div className="max-w-5xl mx-auto relative overflow-hidden rounded-[2rem] border border-slate-200 dark:border-white/5 bg-white dark:bg-studio-obsidian/50 p-12 lg:p-24 shadow-2xl">
-            {/* Elemento decorativo sutil */}
-            <div className="absolute -top-24 -right-24 w-64 h-64 bg-primary/10 rounded-full blur-3xl"></div>
+        {/* CTA Section - Degradado Extendido desde Esquina Derecha */}
+        <section className="relative px-6 lg:px-20 min-h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-background-dark">
+          
+          {/* Fondo Radial Extendido */}
+          <div className="absolute inset-0 z-0">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#0E0E55_0%,#0E0E55_10%,#f0f7ff_65%,white_100%)] dark:bg-[radial-gradient(circle_at_top_right,#0E0E55_0%,#0E0E55_10%,#0a0d14_65%,#05070a_100%)]"></div>
+          </div>
+
+          {/* Estrellas (ID único y centradas en el azul) */}
+          <div className="absolute inset-0 z-0 pointer-events-none opacity-50">
+            <BackgroundEffect id="final-cta-vortex" />
+          </div>
+
+          <div className="relative z-10 max-w-5xl mx-auto text-center flex flex-col items-center gap-12">
+            <motion.div 
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: false, margin: "-100px" }}
+              transition={{ duration: 0.8 }}
+              className="space-y-8"
+            >
+              <h2 className="text-slate-950 dark:text-white text-4xl lg:text-7xl font-black tracking-tightest uppercase italic leading-[0.95] flex flex-col items-center gap-2">
+                <span className="drop-shadow-sm">{t('footer.cta_title')}</span>
+                <span 
+                  style={{ 
+                    WebkitTextStroke: '2px #1a57a4', 
+                    color: 'transparent'
+                  }}
+                >
+                  {t('footer.cta_together')}
+                </span>
+              </h2>
+              <p className="text-slate-600 dark:text-slate-400 text-lg md:text-xl font-medium max-w-2xl mx-auto">
+                {t('footer.cta_desc')}
+              </p>
+            </motion.div>
             
-            <div className="relative z-10 flex flex-col items-start gap-10">
-              <div className="space-y-4 max-w-2xl">
-                <h2 className="text-slate-900 dark:text-white text-4xl lg:text-6xl font-black tracking-tightest uppercase italic leading-[0.95]">
-                  {i18n.language === 'es' ? '¿Listo para elevar' : 'Ready to elevate'} <br /> 
-                  <span className="text-primary not-italic underline decoration-4 underline-offset-4 decoration-primary/20">{i18n.language === 'es' ? 'tu marca?' : 'your brand?'}</span>
-                </h2>
-                <p className="text-slate-500 dark:text-slate-400 text-lg md:text-xl font-medium">
-                  {i18n.language === 'es' 
-                    ? 'Únete a las empresas que ya están dominando el entorno digital con nosotros.' 
-                    : 'Join the companies that are already dominating the digital environment with us.'}
-                </p>
-              </div>
-              
-              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-                <Link to="/configurator" className="bg-primary text-white font-black py-6 px-12 rounded-full text-lg uppercase tracking-widest hover:bg-primary/90 transition-all shadow-xl shadow-primary/20 flex items-center gap-4">
-                  {t('nav.configurator')}
-                  <ArrowRight size={20} />
-                </Link>
-              </motion.div>
-            </div>
+            <motion.div 
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: false, margin: "-100px" }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+              whileHover={{ scale: 1.05 }} 
+              whileTap={{ scale: 0.95 }}
+            >
+              <Link to="/configurator" className="relative z-10 bg-primary text-white font-black py-5 px-10 rounded-full text-xs uppercase tracking-[0.2em] hover:bg-primary/90 transition-all shadow-xl flex items-center gap-4 group">
+                {t('nav.configurator')}
+                <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </motion.div>
           </div>
         </section>
       </main>
@@ -266,23 +343,58 @@ const Home: React.FC = () => {
   );
 };
 
-const ServiceBox = ({ icon, title, desc }: { icon: React.ReactNode, title: string, desc: string }) => (
-  <div className="group flex flex-col gap-8 rounded-3xl border border-slate-200 dark:border-white/5 bg-white dark:bg-slate-900/50 p-10 transition-all hover:-translate-y-3 hover:shadow-2xl hover:shadow-primary/10 text-left">
-    <div className="size-16 rounded-2xl bg-primary/5 dark:bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-500 group-hover:rotate-6">
-      {React.isValidElement(icon) ? React.cloneElement(icon as React.ReactElement<any>, { size: 32, strokeWidth: 2.5 }) : icon}
-    </div>
-    <div className="flex flex-col gap-4">
-      <h3 className="text-slate-900 dark:text-white text-2xl font-black italic uppercase tracking-tighter leading-none text-left">{title}</h3>
-      <p className="text-slate-500 dark:text-slate-400 font-medium leading-relaxed text-left">{desc}</p>
-    </div>
-    <a className="mt-auto flex items-center gap-3 text-primary font-black text-xs uppercase tracking-[0.2em] group-hover:gap-5 transition-all" href="#">
-      Learn More <ArrowRight size={16} strokeWidth={3} />
-    </a>
-  </div>
-);
+const ServiceBox = ({ icon, title, desc }: { icon: React.ReactNode, title: string, desc: string }) => {
+  const { t } = useTranslation();
+  return (
+    <motion.div 
+      variants={{
+        hidden: { opacity: 0, y: 20 },
+        show: { 
+          opacity: 1, 
+          y: 0,
+          transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+        }
+      }}
+      className="group relative flex flex-col gap-8 rounded-3xl p-10 transition-all text-left overflow-hidden bg-white dark:bg-slate-900 border border-slate-100 dark:border-white/5 shadow-xl shadow-black/5"
+    >
+      <svg className="absolute inset-0 w-full h-full pointer-events-none" preserveAspectRatio="none">
+        <motion.rect
+          x="0" y="0" width="100%" height="100%"
+          rx="24" ry="24"
+          fill="transparent"
+          stroke="currentColor"
+          strokeWidth="2"
+          className="text-primary dark:text-primary/50"
+          initial={{ pathLength: 0 }}
+          whileInView={{ pathLength: 1 }}
+          viewport={{ margin: "-50px" }}
+          transition={{ duration: 1.5, ease: "easeInOut" }}
+        />
+      </svg>
+
+      <div className="relative z-10">
+        <div className="size-16 rounded-2xl bg-primary/5 dark:bg-primary/10 text-primary flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all duration-500 group-hover:rotate-6">
+          {React.isValidElement(icon) ? React.cloneElement(icon as React.ReactElement<any>, { size: 32, strokeWidth: 2.5 }) : icon}
+        </div>
+        <div className="flex flex-col gap-4 mt-8">
+          <h3 className="text-slate-900 dark:text-white text-2xl font-black italic uppercase tracking-tighter leading-none text-left">{title}</h3>
+          <p className="text-slate-500 dark:text-slate-400 font-medium leading-relaxed text-left">{desc}</p>
+        </div>
+        <a className="mt-10 flex items-center gap-3 text-primary font-black text-xs uppercase tracking-[0.2em] group-hover:gap-5 transition-all" href="#">
+          {t('services.learn_more')} <ArrowRight size={16} strokeWidth={3} />
+        </a>
+      </div>
+    </motion.div>
+  );
+};
 
 const WhyBox = ({ icon, title, desc, mt }: { icon: React.ReactNode, title: string, desc: string, mt?: string }) => (
-  <div className={`flex flex-col gap-6 p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-white/5 shadow-premium ${mt || ''} transition-colors text-left`}>
+  <motion.div 
+    initial={{ opacity: 0, y: 20 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6, ease: "easeOut" }}
+    className={`flex flex-col gap-6 p-8 rounded-3xl bg-white dark:bg-slate-900 border border-slate-100 dark:border-white/5 shadow-premium ${mt || ''} transition-colors text-left`}
+  >
     <div className="text-primary">
       {React.isValidElement(icon) ? React.cloneElement(icon as React.ReactElement<any>, { size: 28 }) : icon}
     </div>
@@ -290,11 +402,16 @@ const WhyBox = ({ icon, title, desc, mt }: { icon: React.ReactNode, title: strin
       <h4 className="font-black italic uppercase text-lg dark:text-white leading-none tracking-tight">{title}</h4>
       <p className="text-xs text-slate-500 dark:text-slate-400 font-medium leading-relaxed">{desc}</p>
     </div>
-  </div>
+  </motion.div>
 );
 
-const WhyCheck = ({ title, desc }: { title: string, desc: string }) => (
-  <div className="flex gap-5 items-start text-left">
+const WhyCheck = ({ title, desc, index }: { title: string, desc: string, index: number }) => (
+  <motion.div 
+    initial={{ opacity: 0, x: -20 }}
+    whileInView={{ opacity: 1, x: 0 }}
+    transition={{ delay: index * 0.1, duration: 0.6 }}
+    className="flex gap-5 items-start text-left"
+  >
     <div className="flex-shrink-0 size-7 rounded-full bg-primary flex items-center justify-center text-white shadow-lg shadow-primary/30">
       <Check size={14} strokeWidth={4} />
     </div>
@@ -302,7 +419,7 @@ const WhyCheck = ({ title, desc }: { title: string, desc: string }) => (
       <h5 className="font-black italic uppercase text-slate-900 dark:text-white leading-none mb-1 tracking-tight">{title}</h5>
       <p className="text-slate-500 dark:text-slate-400 text-sm font-medium leading-relaxed">{desc}</p>
     </div>
-  </div>
+  </motion.div>
 );
 
 export default Home;

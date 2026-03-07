@@ -8,12 +8,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: "#0d33f2",
+        primary: "#1a57a4",
         accent: "#00ff88",
         "background-light": "#f8fafc",
         "background-dark": "#05070a", // Obsidian profundo
         studio: {
-          blue: '#0d33f2',
+          blue: '#1a57a4',
           black: '#05070a',
           white: '#f8fafc',
           obsidian: '#0a0d14',

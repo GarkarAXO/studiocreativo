@@ -28,7 +28,8 @@
     "content": "Content Strategy",
     "content_desc": "Powerful narratives that build authority and loyalty with your audience.",
     "social": "Paid Media & Social",
-    "social_desc": "Smart advertising and community management focused on organic and paid growth."
+    "social_desc": "Smart advertising and community management focused on organic and paid growth.",
+    "learn_more": "Learn More"
   },
   "why": {
     "title": "Why Trust Us?",
@@ -48,6 +49,9 @@
     "check2_desc": "You'll know exactly where every cent of your budget is being invested."
   },
   "footer": {
+    "cta_title": "Ready to elevate your brand",
+    "cta_together": "together?",
+    "cta_desc": "Join the companies that are already dominating the digital environment with us.",
     "description": "Transforming the digital landscape in Mexico with bold creativity and cutting-edge technology.",
     "follow": "Follow Us",
     "rights": "© 2026 Studio Creativo. All rights reserved."
