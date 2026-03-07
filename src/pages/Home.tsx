@@ -1,6 +1,6 @@
-import React, { useRef } from 'react';
+import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Navbar } from '../components/Navbar';
 import { BackgroundEffect } from '../components/BackgroundEffect';
 import { FloatingElements } from '../components/FloatingElements';
