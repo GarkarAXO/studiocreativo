@@ -1,6 +1,6 @@
 {
   "nav": {
-    "services": "Expertise",
+    "services": "Servicios",
     "about": "Nosotros",
     "configurator": "Cotizar Proyecto",
     "home": "Inicio"
@@ -14,7 +14,7 @@
     "showreel": "Showreel 2026"
   },
   "services": {
-    "badge": "Nuestro Expertise",
+    "badge": "Servicios",
     "title": "Soluciones que escalan",
     "desc": "Desde el primer trazo de diseño hasta la última línea de código, nos enfocamos en el retorno de tu inversión.",
     "marketing": "Marketing de Alto Nivel",

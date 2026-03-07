@@ -1,6 +1,6 @@
 {
   "nav": {
-    "services": "Expertise",
+    "services": "Services",
     "about": "About",
     "configurator": "Get a Quote",
     "home": "Home"
@@ -14,7 +14,7 @@
     "showreel": "Showreel 2026"
   },
   "services": {
-    "badge": "Our Expertise",
+    "badge": "Services",
     "title": "Solutions That Scale",
     "desc": "From the first design stroke to the last line of code, we focus on your return on investment.",
     "marketing": "High-Level Marketing",
