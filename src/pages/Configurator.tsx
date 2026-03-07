@@ -79,67 +79,67 @@ const Configurator: React.FC = () => {
     <div className="bg-background-light dark:bg-slate-950 min-h-screen text-slate-900 dark:text-slate-100 font-sans transition-colors duration-500">
       <Navbar />
       
-      <main className="pt-24 pb-20 px-6 lg:px-20">
+      <main className="pt-20 pb-20 px-4 md:px-10 lg:px-20">
         <div className="max-w-7xl mx-auto">
           {/* Header Section */}
-          <div className="max-w-3xl mb-16 pt-10">
-            <h1 className="text-5xl lg:text-7xl font-black tracking-tight leading-none uppercase italic mb-6 dark:text-white">
+          <div className="max-w-3xl mb-10 md:mb-16 pt-10">
+            <h1 className="text-3xl md:text-5xl lg:text-7xl font-black tracking-tight leading-none uppercase italic mb-4 md:mb-6 dark:text-white">
               Build Your <br /> <span className="text-primary not-italic">Custom Package</span>
             </h1>
-            <p className="text-xl text-slate-500 dark:text-slate-400 font-medium max-w-2xl leading-relaxed">
+            <p className="text-base md:text-xl text-slate-500 dark:text-slate-400 font-medium max-w-2xl leading-relaxed">
               Tailor our expert services to your specific business needs. Select your options below to see a real-time investment estimate.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-12">
             {/* Service Selection */}
-            <div className="lg:col-span-2 space-y-8">
-              <h2 className="text-2xl font-black uppercase tracking-widest border-b border-slate-200 dark:border-white/10 pb-4 italic">
+            <div className="lg:col-span-2 space-y-6 md:space-y-8">
+              <h2 className="text-xl md:text-2xl font-black uppercase tracking-widest border-b border-slate-200 dark:border-white/10 pb-4 italic">
                 {i18n.language === 'es' ? 'Selecciona tus Servicios' : 'Select Services'}
               </h2>
               
-              <div className="grid grid-cols-1 gap-6">
+              <div className="grid grid-cols-1 gap-4 md:gap-6">
                 {services.map((service) => {
                   const isSelected = selectedServices.includes(service.id);
                   return (
                     <motion.div 
                       key={service.id}
                       onClick={() => toggleService(service.id)}
-                      className={`group relative flex flex-col md:flex-row items-stretch gap-6 rounded-3xl border-2 p-6 transition-all duration-300 cursor-pointer ${
+                      className={`group relative flex flex-col md:flex-row items-stretch gap-4 md:gap-6 rounded-2xl md:rounded-3xl border-2 p-4 md:p-6 transition-all duration-300 cursor-pointer ${
                         isSelected 
                         ? 'border-primary bg-white dark:bg-slate-900 shadow-xl shadow-primary/5' 
                         : 'border-slate-100 dark:border-white/5 bg-white dark:bg-slate-900/50 hover:border-primary/30'
                       }`}
                     >
-                      <div className="w-full md:w-48 h-32 bg-slate-100 dark:bg-slate-800 rounded-2xl overflow-hidden flex-shrink-0 relative text-primary/40 font-black italic text-4xl flex items-center justify-center uppercase">
+                      <div className="w-full md:w-48 h-24 md:h-32 bg-slate-100 dark:bg-slate-800 rounded-xl md:rounded-2xl overflow-hidden flex-shrink-0 relative text-primary/40 font-black italic text-3xl md:text-4xl flex items-center justify-center uppercase">
                          {service.id.substring(0, 2)}
                       </div>
                       
-                      <div className="flex grow flex-col justify-between py-2">
-                        <div className="flex justify-between items-start">
+                      <div className="flex grow flex-col justify-between py-1">
+                        <div className="flex flex-col md:flex-row justify-between items-start gap-4">
                           <div>
-                            <h3 className={`text-xl font-black uppercase italic tracking-tight ${isSelected ? 'text-primary' : 'text-slate-900 dark:text-white'}`}>
+                            <h3 className={`text-lg md:text-xl font-black uppercase italic tracking-tight ${isSelected ? 'text-primary' : 'text-slate-900 dark:text-white'}`}>
                               {t(service.nameKey)}
                             </h3>
-                            <p className="text-sm font-medium text-slate-500 dark:text-slate-400 mt-1 max-w-sm">
+                            <p className="text-xs md:text-sm font-medium text-slate-500 dark:text-slate-400 mt-1 max-w-sm">
                               {t(service.descriptionKey)}
                             </p>
                           </div>
-                          <div className="text-right">
-                            <span className="text-2xl font-black text-primary tracking-tighter">
+                          <div className="text-left md:text-right">
+                            <span className="text-xl md:text-2xl font-black text-primary tracking-tighter">
                               ${service.basePrice.toLocaleString('es-MX')}
                             </span>
-                            <span className="text-[10px] block text-slate-400 font-bold uppercase tracking-widest mt-1">MXN</span>
+                            <span className="text-[10px] inline-block md:block text-slate-400 font-bold uppercase tracking-widest ml-2 md:mt-1">MXN</span>
                           </div>
                         </div>
 
-                        <div className="mt-6 flex items-center gap-3">
-                           <div className={`size-6 rounded-lg border-2 flex items-center justify-center transition-all ${
+                        <div className="mt-4 md:mt-6 flex items-center gap-3">
+                           <div className={`size-5 md:size-6 rounded-md md:rounded-lg border-2 flex items-center justify-center transition-all ${
                              isSelected ? 'bg-primary border-primary text-white' : 'border-slate-200 dark:border-white/10'
                            }`}>
-                             {isSelected && <Check size={14} strokeWidth={4} />}
+                             {isSelected && <Check size={12} strokeWidth={4} />}
                            </div>
-                           <span className={`text-xs font-black uppercase tracking-widest ${isSelected ? 'text-primary' : 'text-slate-400'}`}>
+                           <span className={`text-[10px] md:text-xs font-black uppercase tracking-widest ${isSelected ? 'text-primary' : 'text-slate-400'}`}>
                               {isSelected ? 'Service Added' : 'Add to Package'}
                            </span>
                         </div>
@@ -152,15 +152,15 @@ const Configurator: React.FC = () => {
 
             {/* Sticky Sidebar */}
             <div className="lg:col-span-1">
-              <div className="sticky top-32 space-y-6">
-                <div className="bg-slate-900 dark:bg-black text-white p-10 rounded-[3rem] shadow-2xl shadow-primary/20 relative overflow-hidden border border-white/5">
+              <div className="sticky top-24 md:top-32 space-y-6">
+                <div className="bg-slate-900 dark:bg-black text-white p-6 md:p-10 rounded-[2rem] md:rounded-[3rem] shadow-2xl shadow-primary/20 relative overflow-hidden border border-white/5">
                   <div className="absolute top-0 right-0 w-32 h-32 bg-primary opacity-20 blur-3xl"></div>
                   
-                  <div className="relative z-10 space-y-10">
-                    <h3 className="text-2xl font-black uppercase italic tracking-tighter">Project Summary</h3>
+                  <div className="relative z-10 space-y-8 md:space-y-10">
+                    <h3 className="text-xl md:text-2xl font-black uppercase italic tracking-tighter">Project Summary</h3>
                     
                     <div className="space-y-4">
-                      <div className="flex justify-between items-center text-xs font-black uppercase tracking-widest opacity-40 text-slate-300">
+                      <div className="flex justify-between items-center text-[10px] md:text-xs font-black uppercase tracking-widest opacity-40 text-slate-300">
                         <span>Implementation</span>
                         <span>${totals.subtotal.toLocaleString('es-MX')}</span>
                       </div>
@@ -170,7 +170,7 @@ const Configurator: React.FC = () => {
                             initial={{ opacity: 0, x: 20 }}
                             animate={{ opacity: 1, x: 0 }}
                             exit={{ opacity: 0, x: 20 }}
-                            className="flex justify-between items-center text-primary font-black uppercase italic tracking-tighter text-lg"
+                            className="flex justify-between items-center text-primary font-black uppercase italic tracking-tighter text-base md:text-lg"
                           >
                             <span>Mixed Discount</span>
                             <span>-${totals.discount.toLocaleString('es-MX')}</span>
@@ -180,14 +180,14 @@ const Configurator: React.FC = () => {
                       <div className="h-px bg-white/10"></div>
                       <div className="pt-2">
                         <span className="text-[10px] font-black uppercase tracking-[0.4em] text-slate-400 block mb-2">Total Estimated</span>
-                        <h4 className="text-5xl font-black tracking-tighter italic text-primary leading-none">
+                        <h4 className="text-3xl md:text-5xl font-black tracking-tighter italic text-primary leading-none">
                           ${totals.total.toLocaleString('es-MX')}
-                          <span className="text-xs ml-2 opacity-30 text-white">MXN</span>
+                          <span className="text-[10px] md:text-xs ml-2 opacity-30 text-white">MXN</span>
                         </h4>
                       </div>
                     </div>
 
-                    <div className="space-y-4">
+                    <div className="space-y-3 md:space-y-4">
                       {isFormValid ? (
                         <PDFDownloadLink
                           document={
@@ -200,33 +200,33 @@ const Configurator: React.FC = () => {
                             />
                           }
                           fileName={`${folio}-StudioCreativo.pdf`}
-                          className="flex items-center justify-center w-full h-16 bg-primary text-white rounded-2xl font-black uppercase tracking-widest text-xs transition-all hover:scale-[1.02] active:scale-95 shadow-xl shadow-primary/20 gap-3"
+                          className="flex items-center justify-center w-full h-14 md:h-16 bg-primary text-white rounded-xl md:rounded-2xl font-black uppercase tracking-widest text-[10px] md:text-xs transition-all hover:scale-[1.02] active:scale-95 shadow-xl shadow-primary/20 gap-3"
                         >
                           {({ loading }) => (
                             loading ? (
-                              <><Loader2 className="animate-spin" size={18} /> Generating...</>
+                              <><Loader2 className="animate-spin" size={16} /> Generating...</>
                             ) : (
-                              <><Download size={18} /> Download Quote PDF</>
+                              <><Download size={16} /> Download PDF</>
                             )
                           )}
                         </PDFDownloadLink>
                       ) : (
                         <button 
-                          className="flex items-center justify-center w-full h-16 bg-slate-800 text-slate-500 rounded-2xl font-black uppercase tracking-widest text-[10px] cursor-not-allowed gap-3"
+                          className="flex items-center justify-center w-full h-14 md:h-16 bg-slate-800 text-slate-500 rounded-xl md:rounded-2xl font-black uppercase tracking-widest text-[9px] md:text-[10px] cursor-not-allowed gap-3"
                           onClick={() => alert('Please fill in your name, email and select at least 1 service.')}
                         >
-                          <FileText size={18} />
+                          <FileText size={16} />
                           Fill Form to Get PDF
                         </button>
                       )}
                       
-                      <a href="#contact" className="flex items-center justify-center w-full h-16 border-2 border-white/10 text-white rounded-2xl font-black uppercase tracking-widest text-xs transition-all hover:bg-white hover:text-slate-900 text-center">
+                      <a href="#contact" className="flex items-center justify-center w-full h-14 md:h-16 border-2 border-white/10 text-white rounded-xl md:rounded-2xl font-black uppercase tracking-widest text-[10px] md:text-xs transition-all hover:bg-white hover:text-slate-900 text-center">
                         Request Discovery
                       </a>
                     </div>
                     
-                    <div className="p-4 bg-primary/10 rounded-2xl border border-primary/20">
-                      <p className="text-[10px] font-bold text-center opacity-60 leading-relaxed uppercase tracking-widest text-primary">
+                    <div className="p-3 md:p-4 bg-primary/10 rounded-xl md:rounded-2xl border border-primary/20">
+                      <p className="text-[9px] md:text-[10px] font-bold text-center opacity-60 leading-relaxed uppercase tracking-widest text-primary">
                         Folio: {folio} | valid for 30 days.
                       </p>
                     </div>
@@ -237,13 +237,13 @@ const Configurator: React.FC = () => {
           </div>
 
           {/* Contact Section */}
-          <section id="contact" className="mt-32 pt-24 border-t border-slate-200 dark:border-white/10">
+          <section id="contact" className="mt-20 md:mt-32 pt-16 md:pt-24 border-t border-slate-200 dark:border-white/10">
             <div className="max-w-2xl mx-auto">
-               <div className="text-center mb-16 space-y-4">
-                  <h2 className="text-4xl lg:text-6xl font-black italic uppercase tracking-tighter leading-none dark:text-white">
+               <div className="text-center mb-10 md:mb-16 space-y-4">
+                  <h2 className="text-3xl md:text-6xl font-black italic uppercase tracking-tighter leading-none dark:text-white">
                     {submitted ? 'Thank You!' : 'Ready to Launch?'}
                   </h2>
-                  <p className="text-slate-500 dark:text-slate-400 font-medium">
+                  <p className="text-sm md:text-base text-slate-500 dark:text-slate-400 font-medium">
                     {submitted 
                       ? 'Your request has been received. Our team will get back to you within 24 hours.' 
                       : 'Fill out the form below and our team will get back to you within 24 hours.'}
@@ -251,8 +251,8 @@ const Configurator: React.FC = () => {
                </div>
                
                {!submitted && (
-                 <form onSubmit={handleSubmit} className="bg-white dark:bg-slate-900 p-12 rounded-[3.5rem] shadow-2xl shadow-black/5 border border-slate-100 dark:border-white/5 space-y-8">
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                 <form onSubmit={handleSubmit} className="bg-white dark:bg-slate-900 p-6 md:p-12 rounded-[2rem] md:rounded-[3.5rem] shadow-2xl shadow-black/5 border border-slate-100 dark:border-white/5 space-y-6 md:space-y-8">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                       <FormInput 
                         label="Full Name" 
                         name="fullName"
@@ -277,12 +277,12 @@ const Configurator: React.FC = () => {
                       onChange={handleInputChange}
                     />
                     <div className="space-y-3">
-                      <label className="text-[10px] font-black uppercase tracking-widest text-slate-400 ml-4">Project Details</label>
+                      <label className="text-[9px] md:text-[10px] font-black uppercase tracking-widest text-slate-400 ml-4">Project Details</label>
                       <textarea 
                         name="details"
                         value={formData.details}
                         onChange={handleInputChange}
-                        className="w-full bg-slate-50 dark:bg-slate-800 border-2 border-slate-50 dark:border-white/5 rounded-[2rem] px-8 py-6 text-sm font-bold focus:bg-white dark:focus:bg-slate-700 focus:border-primary outline-none transition-all resize-none text-slate-900 dark:text-white" 
+                        className="w-full bg-slate-50 dark:bg-slate-800 border-2 border-slate-50 dark:border-white/5 rounded-2xl md:rounded-[2rem] px-6 md:px-8 py-4 md:py-6 text-sm font-bold focus:bg-white dark:focus:bg-slate-700 focus:border-primary outline-none transition-all resize-none text-slate-900 dark:text-white" 
                         placeholder="Tell us about your goals..." 
                         rows={4}
                       />
@@ -290,7 +290,7 @@ const Configurator: React.FC = () => {
                     <button 
                       type="submit"
                       disabled={isSubmitting || !isFormValid}
-                      className="w-full bg-primary py-6 rounded-2xl text-white font-black uppercase tracking-widest transition-all hover:shadow-2xl hover:shadow-primary/30 active:scale-95 flex items-center justify-center gap-4 shadow-lg shadow-primary/20 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full bg-primary py-5 md:py-6 rounded-xl md:rounded-2xl text-white font-black uppercase tracking-widest text-xs md:text-sm transition-all hover:shadow-2xl hover:shadow-primary/30 active:scale-95 flex items-center justify-center gap-4 shadow-lg shadow-primary/20 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                        {isSubmitting ? <Loader2 className="animate-spin" size={18} /> : 'Send Package Request'}
                        {!isSubmitting && <Send size={18} />}
@@ -299,6 +299,8 @@ const Configurator: React.FC = () => {
                )}
             </div>
           </section>
+        </div>
+      </main>
         </div>
       </main>
 
