@@ -81,8 +81,8 @@ export const Navbar: React.FC = () => {
       {/* --- TAB BAR INFERIOR (Solo Mobile) --- */}
       <div className="md:hidden fixed bottom-0 left-0 w-full z-[100] px-4 pb-6 pointer-events-none">
         <nav aria-label="Navegación móvil" className="max-w-xs mx-auto flex items-center justify-around pointer-events-auto 
-                        h-16 rounded-full border border-slate-200 dark:border-slate-800 
-                        bg-white/40 dark:bg-slate-900/40 backdrop-blur-3xl shadow-2xl transition-all duration-500">
+                        h-16 rounded-full border border-slate-300/80 dark:border-white/20 
+                        bg-white/60 dark:bg-slate-900/60 backdrop-blur-2xl shadow-2xl transition-all duration-500">
           
           <MobileNavLink to="/" icon={<Home size={20} aria-hidden="true" />} label={t('nav.home')} active={isActive('/')} />
           <MobileNavLink to="/#services" icon={<Layout size={20} aria-hidden="true" />} label="Servicios" active={false} isAnchor />
@@ -96,7 +96,7 @@ export const Navbar: React.FC = () => {
 
 const MobileNavLink = ({ to, icon, label, active, isAnchor = false }: { to: string, icon: React.ReactNode, label: string, active: boolean, isAnchor?: boolean }) => {
   const content = (
-    <div className={`flex flex-col items-center gap-1 transition-colors ${active ? 'text-primary' : 'text-slate-400 dark:text-slate-500'}`}>
+    <div className={`flex flex-col items-center gap-1 transition-colors ${active ? 'text-primary' : 'text-slate-900 dark:text-slate-200'}`}>
       {icon}
       <span className="text-[8px] font-black uppercase tracking-tighter">{label}</span>
     </div>
